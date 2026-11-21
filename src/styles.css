@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos globales: solo importa las capas del sistema de diseño (REQ-23) */
+@import "./styles/tokens.css";
+@import "./styles/base.css";
+@import "./styles/components.css";
+@import "./styles/utilities.css";

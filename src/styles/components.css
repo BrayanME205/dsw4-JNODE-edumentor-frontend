@@ -1,0 +1,191 @@
+/* =========================================================================
+   Componentes base reutilizables (clases .em-*)
+   ========================================================================= */
+
+/* ---------- Botones ---------- */
+.em-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--em-space-2);
+  min-height: 44px; padding: 0 var(--em-space-5);
+  border: 1.5px solid transparent; border-radius: var(--em-radius-md);
+  font: 600 var(--em-text-sm)/1 var(--em-font-sans);
+  cursor: pointer; text-decoration: none;
+  transition: background-color var(--em-duration) var(--em-ease), border-color var(--em-duration) var(--em-ease);
+}
+.em-btn--primary   { background: var(--em-primary); color: var(--em-on-primary); }
+.em-btn--primary:hover { background: var(--em-primary-hover); color: var(--em-on-primary); }
+.em-btn--accent    { background: var(--em-accent); color: #fff; }
+.em-btn--accent:hover { background: var(--em-accent-hover); color: #fff; }
+.em-btn--secondary { background: var(--em-surface); color: var(--em-primary); border-color: var(--em-primary); }
+.em-btn--secondary:hover { background: var(--em-lavender); }
+.em-btn--ghost     { background: transparent; color: var(--em-text); }
+.em-btn--ghost:hover { background: var(--em-surface-2); }
+.em-btn--danger    { background: var(--em-surface); color: var(--em-danger); border-color: var(--em-danger); }
+.em-btn--danger:hover { background: var(--em-danger-bg); }
+.em-btn--sm { min-height: 36px; padding: 0 var(--em-space-4); font-size: var(--em-text-xs); }
+.em-btn[aria-busy="true"] { cursor: progress; opacity: 0.75; }
+
+/* ---------- Formularios ---------- */
+.em-field { display: grid; gap: var(--em-space-2); }
+.em-label { font-weight: 600; font-size: var(--em-text-xs); color: var(--em-text); }
+.em-hint  { font-size: var(--em-text-xs); color: var(--em-text-2); }
+.em-input, .em-select, .em-textarea {
+  width: 100%; min-height: 44px; padding: var(--em-space-2) var(--em-space-3);
+  background: var(--em-surface); color: var(--em-text);
+  border: 1.5px solid var(--em-border-control); border-radius: var(--em-radius-md);
+  font: inherit;
+}
+.em-textarea { min-height: 7rem; resize: vertical; }
+.em-input:focus-visible, .em-select:focus-visible, .em-textarea:focus-visible {
+  outline: none; border-color: var(--em-focus); box-shadow: 0 0 0 3px var(--em-lavender);
+}
+.em-input[aria-invalid="true"], .em-select[aria-invalid="true"], .em-textarea[aria-invalid="true"] {
+  border-color: var(--em-danger);
+}
+.em-error { font-size: var(--em-text-xs); font-weight: 600; color: var(--em-danger); }
+.em-error::before { content: "⚠ "; }
+
+/* ---------- Tarjetas y paneles ---------- */
+.em-card {
+  background: var(--em-surface);
+  border: 1px solid var(--em-border);
+  border-radius: var(--em-radius-lg);
+  padding: var(--em-space-5);
+}
+.em-panel { background: var(--em-surface-2); border-radius: var(--em-radius-lg); padding: var(--em-space-5); }
+
+/* ---------- Badges de estado: texto siempre visible ---------- */
+.em-badge {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  padding: 0.2em 0.65em; border-radius: var(--em-radius-sm);
+  font-size: var(--em-text-xs); font-weight: 600; white-space: nowrap;
+}
+.em-badge::before { content: ""; width: 0.5em; height: 0.5em; border-radius: 50%; background: currentColor; }
+.em-badge--solicitada { color: var(--em-estado-solicitada); background: var(--em-estado-solicitada-bg); }
+.em-badge--confirmada { color: var(--em-estado-confirmada); background: var(--em-estado-confirmada-bg); }
+.em-badge--en-sesion  { color: var(--em-estado-en-sesion);  background: var(--em-estado-en-sesion-bg); }
+.em-badge--completada { color: var(--em-estado-completada); background: var(--em-estado-completada-bg); }
+.em-badge--evaluada   { color: var(--em-estado-evaluada);   background: var(--em-estado-evaluada-bg); }
+.em-badge--cerrada    { color: var(--em-estado-cerrada);    background: var(--em-estado-cerrada-bg); }
+
+/* ---------- Chips de filtro ---------- */
+.em-chip {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 0 var(--em-space-4);
+  border: 1.5px solid var(--em-border-control); border-radius: var(--em-radius-pill);
+  background: var(--em-surface); color: var(--em-text); font: 600 var(--em-text-xs) var(--em-font-sans); cursor: pointer;
+}
+.em-chip[aria-pressed="true"] { background: var(--em-indigo); border-color: var(--em-indigo); color: #fff; }
+
+/* ---------- Alertas (mensajes de la API) ---------- */
+.em-alert { padding: var(--em-space-3) var(--em-space-4); border: 1.5px solid; border-radius: var(--em-radius-md); }
+.em-alert::before { font-weight: 700; margin-right: var(--em-space-2); }
+.em-alert--error   { background: var(--em-danger-bg);  color: var(--em-danger);  border-color: var(--em-danger); }
+.em-alert--error::before { content: "!"; }
+.em-alert--success { background: var(--em-success-bg); color: var(--em-success); border-color: var(--em-success); }
+.em-alert--success::before { content: "✓"; }
+
+/* ---------- Avatar con iniciales ---------- */
+.em-avatar {
+  display: inline-grid; place-items: center; flex: none;
+  width: 3rem; height: 3rem; border-radius: 50%;
+  background: var(--em-lavender); color: var(--em-indigo);
+  font-weight: 700; font-size: var(--em-text-sm);
+}
+.em-avatar--lg { width: 5rem; height: 5rem; font-size: var(--em-text-lg); }
+
+/* ---------- Tablas ---------- */
+.em-table { width: 100%; border-collapse: collapse; font-size: var(--em-text-xs); }
+.em-table caption { text-align: left; font-weight: 700; padding-bottom: var(--em-space-3); }
+.em-table th { text-align: left; color: var(--em-text-2); font-weight: 600; padding: var(--em-space-3); border-bottom: 1.5px solid var(--em-border); }
+.em-table td { padding: var(--em-space-3); border-bottom: 1px solid var(--em-border); }
+
+/* =========================================================================
+   ELEMENTO FIRMA 1 · Ruta de la tutoría (estado como recorrido)
+   <ol class="em-ruta" data-estado="CONFIRMED"> con 5 <li class="em-ruta__parada">
+   ========================================================================= */
+.em-ruta { --progreso: 0; /* 0 a 1: lo fija el componente según el estado */ list-style: none; margin: 0; padding: 0; position: relative;
+  display: grid; grid-template-columns: repeat(5, 1fr); }
+.em-ruta::before, .em-ruta::after {
+  content: ""; position: absolute; top: 9px; left: 10%; height: 3px; border-radius: 3px;
+}
+.em-ruta::before { right: 10%; background: var(--em-border); }
+.em-ruta::after  { width: calc(80% * var(--progreso)); background: var(--em-primary);
+  transition: width 700ms var(--em-ease); }
+.em-ruta__parada { position: relative; z-index: 1; display: grid; justify-items: center; gap: var(--em-space-2);
+  font-size: 0.8125rem; color: var(--em-text-2); text-align: center; }
+.em-ruta__parada::before { content: ""; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--em-surface); border: 3px solid var(--em-border-control); }
+.em-ruta__parada[data-paso="hecho"]::before  { background: var(--em-primary); border-color: var(--em-primary); }
+.em-ruta__parada[data-paso="actual"]::before { background: var(--em-magenta); border-color: var(--em-primary);
+  box-shadow: 0 0 0 4px var(--em-mist); }
+.em-ruta__parada[data-paso="actual"] { color: var(--em-text); font-weight: 700; }
+.em-ruta[data-cortada="true"]::after { background: var(--em-danger); }
+.em-ruta__parada[data-paso="corte"]::before { background: var(--em-danger-bg); border-color: var(--em-danger); }
+.em-ruta__parada[data-paso="corte"] { color: var(--em-danger); font-weight: 700; }
+
+/* =========================================================================
+   ELEMENTO FIRMA 2 · Horario semanal (matriz días × horas)
+   ========================================================================= */
+.em-horario { border-collapse: separate; border-spacing: 4px; width: 100%; font-size: 0.8125rem; table-layout: fixed; }
+.em-horario th { color: var(--em-text-2); font-weight: 600; padding: var(--em-space-1); }
+.em-horario th[scope="row"] { text-align: right; padding-right: var(--em-space-2); width: 3.5rem; }
+.em-horario thead td { background: transparent; }
+.em-horario tbody td { height: 2.25rem; border-radius: var(--em-radius-sm); background: var(--em-surface-2); }
+.em-horario td[data-bloque="libre"] { background: var(--em-lavender); box-shadow: inset 0 0 0 1px #C9C0F2; }
+.em-horario td[data-bloque="ocupado"] { background: repeating-linear-gradient(135deg, var(--em-surface-2) 0 6px, var(--em-border) 6px 8px); }
+.em-horario td[data-bloque="elegido"] { background: var(--em-primary); }
+.em-horario button { width: 100%; height: 100%; border: 0; background: transparent; border-radius: inherit; cursor: pointer; }
+.em-horario button:hover { background: rgba(91, 68, 194, 0.18); }
+
+/* =========================================================================
+   Vidrio y burbujas (glassmorphism)
+   Solo sobre un fondo con burbujas: hero, login, banners y encabezados.
+   Nunca en tablas ni en listas largas. El 74 % de blanco garantiza AA.
+   ========================================================================= */
+.em-escena { position: relative; overflow: hidden; isolation: isolate; }
+.em-escena > :not(.em-burbuja) { position: relative; z-index: 1; }
+
+.em-glass {
+  background: rgba(255, 255, 255, 0.74);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(43, 31, 110, 0.12);
+}
+.em-glass a:not(.em-btn) { color: var(--em-violet-hover); }
+.em-glass--oscuro {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .em-glass { background: rgba(255, 255, 255, 0.94); }
+  .em-glass--oscuro { background: #2B1F6E; }
+}
+
+.em-burbuja { position: absolute; z-index: 0; border-radius: 50%; pointer-events: none; }
+.em-burbuja--violeta { background: radial-gradient(circle at 32% 28%, #FFFFFF 0%, #CDBFFF 16%, #8A6CF0 46%, #5B44C2 78%); }
+.em-burbuja--magenta { background: radial-gradient(circle at 32% 28%, #FFFFFF 0%, #F9D3E8 16%, #F07DBF 48%, #E0449E 80%); }
+.em-burbuja--perla   { background: radial-gradient(circle at 30% 28%, #FFFFFF 0%, #FCEAF4 38%, #ECE8FB 72%); }
+.em-burbuja--brillo  { background: radial-gradient(circle, rgba(224, 68, 158, 0.55), rgba(91, 68, 194, 0) 70%); filter: blur(30px); }
+@media (prefers-reduced-transparency: reduce) {
+  .em-glass { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* ---------- Alerta de advertencia ---------- */
+.em-alert--aviso { background: var(--em-warning-bg); color: var(--em-warning); border-color: var(--em-warning); }
+.em-alert--aviso::before { content: "!"; }
+
+/* ---------- Esqueleto de carga ---------- */
+.em-skel { display: block; border-radius: var(--em-radius-sm); background: var(--em-lavender); }
+
+/* ---------- Banner de bienvenida (pantallas internas) ---------- */
+.em-banner { display: flex; flex-wrap: wrap; align-items: center; gap: var(--em-space-5);
+  background: #F4EFFC; border-radius: 24px; padding: var(--em-space-5); margin-bottom: var(--em-space-6); }
+.em-banner__texto { flex: 1 1 340px; padding: var(--em-space-5) var(--em-space-6); }
+.em-banner__img { position: relative; z-index: 1; flex: 0 1 340px; width: 100%; max-width: 340px;
+  height: 220px; object-fit: cover; border-radius: 18px; }
+
+/* ---------- Títulos editoriales y de pantalla ---------- */
+.em-titulo-pantalla { margin: 0 0 var(--em-space-1); font-size: 2.125rem; letter-spacing: -0.02em; }
+.em-titulo-seccion { font-family: var(--em-font-display); font-weight: 500; letter-spacing: -0.02em; }

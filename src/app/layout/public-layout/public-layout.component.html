@@ -1,0 +1,30 @@
+<a class="em-skip" href="#contenido">{{ 'NAV.SALTAR' | translate }}</a>
+
+<header class="encabezado">
+  <div class="em-container encabezado__fila">
+    <app-logo />
+
+    <button type="button" class="encabezado__menu" aria-controls="menu-publico"
+            [attr.aria-expanded]="menuAbierto()" (click)="alternarMenu()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="em-sr-only">{{ 'NAV.MENU' | translate }}</span>
+    </button>
+
+    <div id="menu-publico" class="encabezado__panel" [class.encabezado__panel--abierto]="menuAbierto()">
+      <nav class="encabezado__nav" [attr.aria-label]="'NAV.PRINCIPAL' | translate">
+        <a routerLink="/materias" routerLinkActive="activo" (click)="cerrarMenu()">{{ 'NAV.MATERIAS' | translate }}</a>
+        <a routerLink="/tutores" routerLinkActive="activo" (click)="cerrarMenu()">{{ 'NAV.TUTORES' | translate }}</a>
+        <a routerLink="/" fragment="como" (click)="cerrarMenu()">{{ 'NAV.COMO_FUNCIONA' | translate }}</a>
+      </nav>
+      <div class="encabezado__acciones">
+        <!-- REQ-19: aquí va el selector de idioma -->
+        <a routerLink="/login" class="em-btn em-btn--secondary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.INICIAR_SESION' | translate }}</a>
+        <a routerLink="/registro" class="em-btn em-btn--primary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.CREAR_CUENTA' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+  <router-outlet />
+</main>

@@ -1,0 +1,83 @@
+/* =========================================================================
+   EduMentor Hub · Tokens del sistema de diseño (REQ-23)
+   Única fuente de colores, tipografía, espacios, radios y sombras.
+   Regla: los componentes NUNCA usan un hex directo; siempre var(--...).
+   ========================================================================= */
+:root {
+  /* ---------- Paleta de marca ---------- */
+  --em-night: #0D0A1F;
+  --em-indigo: #2B1F6E;
+  --em-violet: #5B44C2;
+  --em-violet-hover: #3F2F9E;
+  --em-purple: #8A3FC0;
+  --em-magenta: #E0449E;        /* solo decoración: no pasa contraste como texto */
+  --em-magenta-dark: #B8278A;   /* acento accesible: botones y texto destacado */
+  --em-pink: #F07DBF;           /* solo decoración o texto sobre fondo Night */
+  --em-pink-pale: #F5CDE2;
+  --em-lavender: #ECE8FB;
+  --em-mist: #FCEAF4;
+
+  /* ---------- Neutrales ---------- */
+  --em-bg: #FAF9FC;
+  --em-surface: #FFFFFF;
+  --em-surface-2: #F1EEF6;
+  --em-border: #DDD7E8;          /* separadores y tarjetas (decorativo) */
+  --em-border-control: #8D879C;  /* bordes de campos: 3,3:1, cumple WCAG 1.4.11 */
+  --em-text: #1C1830;
+  --em-text-2: #5A5469;          /* texto secundario: 7,2:1 */
+
+  /* ---------- Roles ---------- */
+  --em-primary: var(--em-violet);
+  --em-primary-hover: var(--em-violet-hover);
+  --em-on-primary: #FFFFFF;
+  --em-accent: var(--em-magenta-dark);
+  --em-accent-hover: #951E70;
+  --em-focus: var(--em-violet);
+
+  --em-success: #17603C;  --em-success-bg: #E3F4EA;
+  --em-warning: #7A4B00;  --em-warning-bg: #FFF1D6;
+  --em-danger: #A01E14;   --em-danger-bg: #FDE8E6;
+
+  /* ---------- Estados de la tutoría (texto + fondo; nunca solo color) ---------- */
+  --em-estado-solicitada: var(--em-warning);      --em-estado-solicitada-bg: var(--em-warning-bg);
+  --em-estado-confirmada: var(--em-violet);       --em-estado-confirmada-bg: var(--em-lavender);
+  --em-estado-en-sesion: var(--em-magenta-dark);  --em-estado-en-sesion-bg: var(--em-mist);
+  --em-estado-completada: var(--em-success);      --em-estado-completada-bg: var(--em-success-bg);
+  --em-estado-evaluada: var(--em-indigo);         --em-estado-evaluada-bg: var(--em-lavender);
+  --em-estado-cerrada: var(--em-text-2);          --em-estado-cerrada-bg: var(--em-surface-2);
+
+  /* ---------- Tipografía ---------- */
+  --em-font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --em-font-display: "Newsreader", Georgia, "Times New Roman", serif;
+
+  --em-text-xs: 0.875rem;   /* 14 */
+  --em-text-sm: 1rem;       /* 16 */
+  --em-text-md: 1.125rem;   /* 18 */
+  --em-text-lg: 1.375rem;   /* 22 */
+  --em-text-xl: 1.75rem;    /* 28 */
+  --em-text-2xl: 2.5rem;    /* 40 */
+  --em-text-3xl: 3.5rem;    /* 56 */
+
+  --em-leading-tight: 1.15;
+  --em-leading-normal: 1.55;
+
+  /* ---------- Espacios (base 4 px) ---------- */
+  --em-space-1: 0.25rem;  --em-space-2: 0.5rem;  --em-space-3: 0.75rem;
+  --em-space-4: 1rem;     --em-space-5: 1.5rem;  --em-space-6: 2rem;
+  --em-space-7: 3rem;     --em-space-8: 4rem;    --em-space-9: 6rem;
+
+  /* ---------- Radios: jerarquía, no uno solo para todo ---------- */
+  --em-radius-sm: 6px;     /* badges, celdas de horario */
+  --em-radius-md: 10px;    /* botones y campos */
+  --em-radius-lg: 18px;    /* tarjetas y paneles */
+  --em-radius-pill: 999px; /* chips de filtro */
+
+  /* ---------- Sombras: solo para lo que flota ---------- */
+  --em-shadow-pop: 0 12px 32px rgba(43, 31, 110, 0.14), 0 2px 6px rgba(43, 31, 110, 0.08);
+
+  /* ---------- Layout y movimiento ---------- */
+  --em-container: 72rem;
+  --em-sidebar: 16rem;
+  --em-duration: 320ms;
+  --em-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
