@@ -1,0 +1,61 @@
+/* =========================================================================
+   Base: reset mínimo, tipografía, foco visible y accesibilidad
+   ========================================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--em-bg);
+  color: var(--em-text);
+  font-family: var(--em-font-sans);
+  font-size: var(--em-text-sm);
+  line-height: var(--em-leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { margin: 0 0 var(--em-space-3); line-height: var(--em-leading-tight); font-weight: 700; }
+h1 { font-size: var(--em-text-2xl); letter-spacing: -0.02em; }
+h2 { font-size: var(--em-text-xl); letter-spacing: -0.01em; }
+h3 { font-size: var(--em-text-lg); }
+h4 { font-size: var(--em-text-md); }
+p  { margin: 0 0 var(--em-space-4); max-width: 68ch; }
+
+a { color: var(--em-primary); text-underline-offset: 3px; }
+a:hover { color: var(--em-primary-hover); }
+
+img, svg { max-width: 100%; display: block; }
+
+/* Foco visible y consistente en toda la app (teclado) */
+:focus-visible {
+  outline: 3px solid var(--em-focus);
+  outline-offset: 2px;
+  border-radius: var(--em-radius-sm);
+}
+
+/* Enlace "Saltar al contenido" */
+.em-skip {
+  position: absolute; left: var(--em-space-4); top: -100px; z-index: 100;
+  padding: var(--em-space-2) var(--em-space-4);
+  background: var(--em-night); color: #fff; border-radius: var(--em-radius-md);
+}
+.em-skip:focus { top: var(--em-space-4); }
+
+.em-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Titulares editoriales (solo landing y títulos de sección pública) */
+.em-display {
+  font-family: var(--em-font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 5vw, var(--em-text-3xl));
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,8 @@
+/* =========================================================================
+   Utilidades de layout (pocas y con nombre claro)
+   ========================================================================= */
+.em-container { width: min(100% - 2.5rem, var(--em-container)); margin-inline: auto; }
+.em-stack > * + * { margin-top: var(--em-space-4); }
+.em-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--em-space-3); }
+.em-grid { display: grid; gap: var(--em-space-5); grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
+.em-muted { color: var(--em-text-2); }
