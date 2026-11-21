@@ -1,1 +1,55 @@
-{}
+{
+  "COMUN": {
+    "CARGANDO": "Cargando…",
+    "VOLVER": "Volver",
+    "CANCELAR": "Cancelar",
+    "CERRAR_AVISO": "Cerrar aviso",
+    "REINTENTAR": "Reintentar",
+    "GUARDAR": "Guardar cambios",
+    "IDIOMA": "Idioma",
+    "ERROR_GENERICO": "Ocurrió un error inesperado. Intentá de nuevo en un momento.",
+    "ERROR_CONEXION": "No pudimos conectar con el servidor. Revisá que el backend esté corriendo.",
+    "OBLIGATORIO": "Este campo es obligatorio",
+    "MIN": "min"
+  },
+  "MARCA": {
+    "IR_AL_INICIO": "EduMentor Hub, ir al inicio"
+  },
+  "TITULOS": {
+    "INICIO": "Inicio"
+  },
+  "NAV": {
+    "SALTAR": "Saltar al contenido",
+    "MENU": "Abrir menú",
+    "PRINCIPAL": "Principal",
+    "MATERIAS": "Materias",
+    "TUTORES": "Tutores",
+    "COMO_FUNCIONA": "Cómo funciona",
+    "INICIAR_SESION": "Iniciar sesión",
+    "CREAR_CUENTA": "Crear cuenta"
+  },
+  "LANDING": {
+    "HERO_TITULO": "Tu próxima tutoría está en un bloque libre.",
+    "HERO_TEXTO": "Encontrá un estudiante de niveles superiores que domina tu materia, mirá su horario real y reservá la hora que te sirve.",
+    "CTA_TUTORES": "Explorá tutores",
+    "CTA_SER_TUTOR": "Convertite en tutor",
+    "OFRECE_TITULO": "Qué te ofrece EduMentor Hub",
+    "OFRECE_HORARIO": "Horario real, sin mensajes de ida y vuelta",
+    "OFRECE_HORARIO_TEXTO": "Cada tutor publica sus bloques libres. Si dos reservas chocan, el sistema lo detecta antes de confirmar.",
+    "OFRECE_MODALIDAD": "Virtual o presencial",
+    "OFRECE_MODALIDAD_TEXTO": "Elegís la modalidad al reservar y comparten enlaces y materiales dentro de la misma sesión.",
+    "OFRECE_EVALUACION": "Calificaciones que sí cuentan",
+    "OFRECE_EVALUACION_TEXTO": "Solo quien terminó una sesión puede evaluarla, y cada nota actualiza el promedio del tutor.",
+    "COMO_TITULO": "Así avanza una tutoría",
+    "PASO_SOLICITA": "Solicitá",
+    "PASO_SOLICITA_TEXTO": "Elegí materia, tutor y un bloque libre de su horario.",
+    "PASO_CONFIRMA": "El tutor confirma",
+    "PASO_CONFIRMA_TEXTO": "Si el horario choca con otra sesión, se rechaza solo.",
+    "PASO_SESION": "La sesión",
+    "PASO_SESION_TEXTO": "Virtual o presencial; comparten recursos en la misma sesión.",
+    "PASO_EVALUA": "Evaluá",
+    "PASO_EVALUA_TEXTO": "Tu calificación actualiza el promedio del tutor.",
+    "BANDA_TITULO": "¿Ya aprobaste el curso? Compartí lo que sabés.",
+    "BANDA_TEXTO": "Creá tu cuenta de tutor, publicá tus bloques libres y acompañá a otros estudiantes de la sede."
+  }
+}
