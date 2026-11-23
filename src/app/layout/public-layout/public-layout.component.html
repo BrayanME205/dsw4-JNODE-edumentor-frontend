@@ -18,8 +18,12 @@
       </nav>
       <div class="encabezado__acciones">
         <!-- REQ-19: aquí va el selector de idioma -->
-        <a routerLink="/login" class="em-btn em-btn--secondary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.INICIAR_SESION' | translate }}</a>
-        <a routerLink="/registro" class="em-btn em-btn--primary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.CREAR_CUENTA' | translate }}</a>
+        @if (auth.autenticado()) {
+          <a [routerLink]="auth.rutaInicio()" class="em-btn em-btn--primary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.MI_PANEL' | translate }}</a>
+        } @else {
+          <a routerLink="/login" class="em-btn em-btn--secondary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.INICIAR_SESION' | translate }}</a>
+          <a routerLink="/registro" class="em-btn em-btn--primary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.CREAR_CUENTA' | translate }}</a>
+        }
       </div>
     </div>
   </div>

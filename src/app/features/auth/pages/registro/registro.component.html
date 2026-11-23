@@ -1,0 +1,62 @@
+<app-marco-auth [frase]="'AUTH.REGISTRO_FRASE' | translate" imagen="assets/img/estudiantes.webp">
+  <div barra><!-- REQ-19: selector de idioma --></div>
+
+  <h1 class="em-titulo-pantalla">{{ 'AUTH.REGISTRO_TITULO' | translate }}</h1>
+  <p class="em-muted">{{ 'AUTH.REGISTRO_SUBTITULO' | translate }}</p>
+
+  @if (error()) {
+    <app-alerta tipo="error" [titulo]="'AUTH.REGISTRO_ERROR_TITULO' | translate" [mensaje]="error() | translate" />
+  }
+
+  <form [formGroup]="form" (ngSubmit)="enviar()" novalidate class="em-stack" style="margin-top: var(--em-space-5)">
+    <fieldset class="roles">
+      <legend>{{ 'AUTH.QUIERO' | translate }}</legend>
+      <label class="rol">
+        <input type="radio" formControlName="rol" value="ESTUDIANTE">
+        <span><strong>{{ 'AUTH.ROL_ESTUDIANTE' | translate }}</strong><span class="em-muted">{{ 'AUTH.ROL_ESTUDIANTE_TEXTO' | translate }}</span></span>
+      </label>
+      <label class="rol">
+        <input type="radio" formControlName="rol" value="TUTOR">
+        <span><strong>{{ 'AUTH.ROL_TUTOR' | translate }}</strong><span class="em-muted">{{ 'AUTH.ROL_TUTOR_TEXTO' | translate }}</span></span>
+      </label>
+    </fieldset>
+
+    <div class="dos">
+      <div class="em-field">
+        <label class="em-label" for="nombre">{{ 'AUTH.NOMBRE' | translate }}</label>
+        <input id="nombre" class="em-input" formControlName="nombre" autocomplete="given-name" [attr.aria-invalid]="invalido('nombre')" aria-describedby="nombre-error">
+        <span id="nombre-error" aria-live="polite">@if (invalido('nombre')) {<span class="em-error">{{ mensaje('nombre') | translate }}</span>}</span>
+      </div>
+      <div class="em-field">
+        <label class="em-label" for="apellido">{{ 'AUTH.APELLIDO' | translate }}</label>
+        <input id="apellido" class="em-input" formControlName="apellido" autocomplete="family-name" [attr.aria-invalid]="invalido('apellido')" aria-describedby="apellido-error">
+        <span id="apellido-error" aria-live="polite">@if (invalido('apellido')) {<span class="em-error">{{ mensaje('apellido') | translate }}</span>}</span>
+      </div>
+    </div>
+
+    <div class="em-field">
+      <label class="em-label" for="carne">{{ 'AUTH.CARNE' | translate }}</label>
+      <input id="carne" class="em-input" formControlName="carne" [attr.aria-invalid]="invalido('carne')" aria-describedby="carne-error">
+      <span id="carne-error" aria-live="polite">@if (invalido('carne')) {<span class="em-error">{{ mensaje('carne') | translate }}</span>}</span>
+    </div>
+    <div class="em-field">
+      <label class="em-label" for="email">{{ 'AUTH.CORREO' | translate }}</label>
+      <input id="email" type="email" class="em-input" formControlName="email" autocomplete="email" [attr.aria-invalid]="invalido('email')" aria-describedby="email-error">
+      <span id="email-error" aria-live="polite">@if (invalido('email')) {<span class="em-error">{{ mensaje('email') | translate }}</span>}</span>
+    </div>
+    <div class="em-field">
+      <label class="em-label" for="password">{{ 'AUTH.CONTRASENA' | translate }}</label>
+      <input id="password" type="password" class="em-input" formControlName="password" autocomplete="new-password" [attr.aria-invalid]="invalido('password')" aria-describedby="password-ayuda password-error">
+      <span id="password-ayuda" class="em-hint">{{ 'AUTH.CONTRASENA_AYUDA' | translate }}</span>
+      <span id="password-error" aria-live="polite">@if (invalido('password')) {<span class="em-error">{{ mensaje('password') | translate }}</span>}</span>
+    </div>
+
+    <button type="submit" class="em-btn em-btn--primary" style="width: 100%" [attr.aria-busy]="enviando()" [disabled]="enviando()">
+      {{ (enviando() ? 'AUTH.CREANDO' : 'AUTH.REGISTRO_BOTON') | translate }}
+    </button>
+  </form>
+
+  <p class="em-muted" style="margin-top: var(--em-space-5)">
+    {{ 'AUTH.CON_CUENTA' | translate }} <a routerLink="/login">{{ 'AUTH.INICIA_SESION' | translate }}</a>
+  </p>
+</app-marco-auth>
