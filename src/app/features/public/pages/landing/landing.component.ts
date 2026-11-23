@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-/** Página de inicio pública. Las secciones con datos de la API se agregan en REQ-15 y REQ-16. */
+import { MateriasDestacadasComponent } from '../../../materias/components/materias-destacadas/materias-destacadas.component';
+
+/** Página de inicio pública. Incluye las materias destacadas (REQ-15); los tutores destacados llegan en REQ-16. */
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RouterLink, TranslateModule],
+  imports: [RouterLink, TranslateModule, MateriasDestacadasComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })

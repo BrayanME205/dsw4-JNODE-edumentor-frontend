@@ -189,3 +189,11 @@
 /* ---------- Títulos editoriales y de pantalla ---------- */
 .em-titulo-pantalla { margin: 0 0 var(--em-space-1); font-size: 2.125rem; letter-spacing: -0.02em; }
 .em-titulo-seccion { font-family: var(--em-font-display); font-weight: 500; letter-spacing: -0.02em; }
+
+/* ---------- Franja de encabezado de las páginas públicas ---------- */
+.franja { background: #F4EFFC; }
+.franja .em-container { padding-block: var(--em-space-7); }
+.franja__panel { padding: var(--em-space-6); }
+.franja__titulo { font-size: var(--em-text-2xl); margin-bottom: var(--em-space-2); }
+.contenido { padding-block: var(--em-space-6) var(--em-space-8); }
+.filtros { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--em-space-3); margin-bottom: var(--em-space-5); }

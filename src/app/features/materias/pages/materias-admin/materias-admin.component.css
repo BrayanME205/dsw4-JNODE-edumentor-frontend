@@ -1,0 +1,8 @@
+.admin { display: flex; flex-wrap: wrap; gap: var(--em-space-5); align-items: flex-start; }
+.admin__lista { flex: 3 1 34rem; min-width: 0; }
+.admin__tabla { overflow-x: auto; }
+.admin__tabla table { min-width: 36rem; }
+.admin__fila--activa { background: var(--em-lavender); }
+.admin__acciones { justify-content: flex-end; flex-wrap: nowrap; }
+.admin__form { flex: 2 1 18rem; min-width: 0; }
+.admin__form-titulo { font-size: 1.25rem; }
