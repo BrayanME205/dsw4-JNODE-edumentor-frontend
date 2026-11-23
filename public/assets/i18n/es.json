@@ -16,7 +16,11 @@
     "IR_AL_INICIO": "EduMentor Hub, ir al inicio"
   },
   "TITULOS": {
-    "INICIO": "Inicio"
+    "INICIO": "Inicio",
+    "LOGIN": "Iniciar sesión",
+    "REGISTRO": "Crear cuenta",
+    "SIN_PERMISO": "Sin permiso",
+    "NO_ENCONTRADA": "Página no encontrada"
   },
   "NAV": {
     "SALTAR": "Saltar al contenido",
@@ -26,7 +30,8 @@
     "TUTORES": "Tutores",
     "COMO_FUNCIONA": "Cómo funciona",
     "INICIAR_SESION": "Iniciar sesión",
-    "CREAR_CUENTA": "Crear cuenta"
+    "CREAR_CUENTA": "Crear cuenta",
+    "MI_PANEL": "Ir a mi panel"
   },
   "LANDING": {
     "HERO_TITULO": "Tu próxima tutoría está en un bloque libre.",
@@ -51,5 +56,69 @@
     "PASO_EVALUA_TEXTO": "Tu calificación actualiza el promedio del tutor.",
     "BANDA_TITULO": "¿Ya aprobaste el curso? Compartí lo que sabés.",
     "BANDA_TEXTO": "Creá tu cuenta de tutor, publicá tus bloques libres y acompañá a otros estudiantes de la sede."
+  },
+  "AUTH": {
+    "LOGIN_FRASE": "Volvé a tus tutorías, justo donde las dejaste.",
+    "LOGIN_TITULO": "Iniciar sesión",
+    "LOGIN_SUBTITULO": "Usá tu correo institucional y tu contraseña.",
+    "LOGIN_BOTON": "Iniciar sesión",
+    "INGRESANDO": "Ingresando…",
+    "LOGIN_ERROR_TITULO": "No pudimos iniciar tu sesión.",
+    "SESION_EXPIRADA_TITULO": "Tu sesión venció.",
+    "SESION_EXPIRADA": "Iniciá sesión de nuevo para continuar.",
+    "CORREO": "Correo institucional",
+    "CORREO_INVALIDO": "Escribí un correo válido, por ejemplo nombre@ucr.ac.cr",
+    "CONTRASENA": "Contraseña",
+    "CONTRASENA_AYUDA": "Mínimo 8 caracteres.",
+    "CONTRASENA_CORTA": "Debe tener al menos 8 caracteres",
+    "DEMASIADO_LARGO": "Es demasiado largo",
+    "SIN_CUENTA": "¿No tenés cuenta?",
+    "CREAR_UNA": "Creá una como estudiante o tutor",
+    "CON_CUENTA": "¿Ya tenés cuenta?",
+    "INICIA_SESION": "Iniciá sesión",
+    "REGISTRO_FRASE": "Aprendé o enseñá: elegí cómo empezar.",
+    "REGISTRO_TITULO": "Crear cuenta",
+    "REGISTRO_SUBTITULO": "Con tu correo institucional de la UCR.",
+    "REGISTRO_BOTON": "Crear cuenta",
+    "CREANDO": "Creando tu cuenta…",
+    "REGISTRO_ERROR_TITULO": "No pudimos crear la cuenta.",
+    "CUENTA_CREADA": "Cuenta creada. ¡Bienvenido a EduMentor Hub!",
+    "QUIERO": "Quiero",
+    "ROL_ESTUDIANTE": "Reservar tutorías",
+    "ROL_ESTUDIANTE_TEXTO": "Busco ayuda con una materia.",
+    "ROL_TUTOR": "Dar tutorías",
+    "ROL_TUTOR_TEXTO": "Ya aprobé el curso y quiero ayudar.",
+    "NOMBRE": "Nombre",
+    "APELLIDO": "Apellido",
+    "CARNE": "Carné"
+  },
+  "ROLES": {
+    "ESTUDIANTE": "Estudiante",
+    "TUTOR": "Tutor",
+    "COORDINADOR": "Coordinación"
+  },
+  "APP": {
+    "MENU": "Menú de la aplicación",
+    "MENU_INICIO": "Inicio",
+    "MENU_RESERVAR": "Reservar",
+    "MENU_TUTORIAS": "Mis tutorías",
+    "MENU_TUTORES": "Tutores",
+    "MENU_MATERIAS": "Materias",
+    "MENU_DISPONIBILIDAD": "Mi disponibilidad",
+    "MENU_SUPERVISION": "Supervisión",
+    "SALIR": "Salir"
+  },
+  "BIENVENIDA": {
+    "HOLA": "Hola, {{nombre}}",
+    "TEXTO": "Tu panel se completa a medida que el equipo integra cada pantalla."
+  },
+  "ERRORES": {
+    "NO_ENCONTRADA_CODIGO": "Error 404",
+    "NO_ENCONTRADA_TITULO": "No encontramos esa página",
+    "NO_ENCONTRADA_TEXTO": "Puede que el enlace esté incompleto o que la página ya no exista.",
+    "SIN_PERMISO_CODIGO": "Acceso restringido",
+    "SIN_PERMISO_TITULO": "Esta sección no es para tu rol",
+    "SIN_PERMISO_TEXTO": "Tu cuenta no tiene permiso para ver esta pantalla. Volvé a tu inicio para seguir.",
+    "IR_INICIO": "Ir al inicio"
   }
 }
