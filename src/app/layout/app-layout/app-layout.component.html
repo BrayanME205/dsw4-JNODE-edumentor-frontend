@@ -1,0 +1,43 @@
+<a class="em-skip" href="#contenido">{{ 'NAV.SALTAR' | translate }}</a>
+
+<div class="app">
+  <!-- Escritorio: menú lateral -->
+  <aside class="lateral">
+    <app-logo [destino]="inicio()" />
+    <nav class="lateral__nav" [attr.aria-label]="'APP.MENU' | translate">
+      @for (item of menu(); track item.ruta) {
+        <a [routerLink]="item.ruta" routerLinkActive="activo" ariaCurrentWhenActive="page" class="lateral__item">
+          <app-icono [nombre]="item.icono" [tamano]="20" />{{ item.clave | translate }}
+        </a>
+      }
+    </nav>
+    @if (usuario(); as u) {
+      <div class="lateral__usuario">
+        <app-avatar [nombre]="u.nombre" />
+        <div class="lateral__datos"><strong>{{ u.nombre }}</strong><span class="em-muted">{{ 'ROLES.' + u.rol | translate }}</span></div>
+        <button type="button" class="em-btn em-btn--ghost em-btn--sm" (click)="salir()">{{ 'APP.SALIR' | translate }}</button>
+      </div>
+    }
+  </aside>
+
+  <!-- Celular: barra superior -->
+  <header class="superior">
+    <app-logo [destino]="inicio()" />
+    <!-- REQ-19: selector de idioma -->
+    <button type="button" class="em-btn em-btn--ghost em-btn--sm superior__salir" (click)="salir()">{{ 'APP.SALIR' | translate }}</button>
+  </header>
+
+  <main id="contenido" class="contenido" tabindex="-1">
+    <div class="contenido__barra"><!-- REQ-19: selector de idioma --></div>
+    <router-outlet />
+  </main>
+
+  <!-- Celular: barra inferior -->
+  <nav class="inferior" [attr.aria-label]="'APP.MENU' | translate">
+    @for (item of menuMovil(); track item.ruta) {
+      <a [routerLink]="item.ruta" routerLinkActive="activo" ariaCurrentWhenActive="page" class="inferior__item">
+        <span class="inferior__icono"><app-icono [nombre]="item.icono" /></span>{{ item.clave | translate }}
+      </a>
+    }
+  </nav>
+</div>

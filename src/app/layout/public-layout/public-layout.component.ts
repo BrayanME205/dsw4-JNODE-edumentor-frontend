@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { AuthService } from '../../core/services/auth.service';
 import { LogoComponent } from '../../shared/components/logo/logo.component';
 
 /** Estructura de las páginas públicas: encabezado de vidrio fijo + contenido. */
@@ -13,6 +14,7 @@ import { LogoComponent } from '../../shared/components/logo/logo.component';
   styleUrl: './public-layout.component.css'
 })
 export class PublicLayoutComponent {
+  readonly auth = inject(AuthService);
   readonly menuAbierto = signal(false);
 
   alternarMenu(): void {

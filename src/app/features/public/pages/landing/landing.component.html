@@ -9,7 +9,7 @@
       <p class="hero__texto">{{ 'LANDING.HERO_TEXTO' | translate }}</p>
       <div class="em-cluster">
         <a routerLink="/tutores" class="em-btn em-btn--primary">{{ 'LANDING.CTA_TUTORES' | translate }}</a>
-        <a routerLink="/registro" class="em-btn em-btn--secondary">{{ 'LANDING.CTA_SER_TUTOR' | translate }}</a>
+        <a routerLink="/registro" [queryParams]="{ rol: 'TUTOR' }" class="em-btn em-btn--secondary">{{ 'LANDING.CTA_SER_TUTOR' | translate }}</a>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
     <div class="em-glass em-glass--oscuro banda__panel">
       <h2 id="banda-titulo" class="em-titulo-seccion banda__titulo">{{ 'LANDING.BANDA_TITULO' | translate }}</h2>
       <p class="banda__texto">{{ 'LANDING.BANDA_TEXTO' | translate }}</p>
-      <a routerLink="/registro" class="em-btn banda__cta">{{ 'LANDING.CTA_SER_TUTOR' | translate }}</a>
+      <a routerLink="/registro" [queryParams]="{ rol: 'TUTOR' }" class="em-btn banda__cta">{{ 'LANDING.CTA_SER_TUTOR' | translate }}</a>
     </div>
     <img src="assets/img/estudiantes.webp" alt="" loading="lazy" class="banda__img">
   </div>
