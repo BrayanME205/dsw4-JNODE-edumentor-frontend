@@ -34,7 +34,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: () => inject(AuthService).rutaInicio() },
-      // Inicio provisional por rol (REQ-15 y REQ-17 lo reemplazan)
+      // Inicio provisional de estudiante y tutor (REQ-17 lo reemplaza)
       {
         path: 'estudiante',
         canActivate: [roleGuard('ESTUDIANTE')],
@@ -51,7 +51,14 @@ export const routes: Routes = [
         path: 'coordinacion',
         canActivate: [roleGuard('COORDINADOR')],
         title: 'TITULOS.INICIO',
-        loadComponent: () => import('./features/dashboard/pages/bienvenida/bienvenida.component').then((m) => m.BienvenidaComponent)
+        loadComponent: () =>
+          import('./features/materias/pages/inicio-coordinador/inicio-coordinador.component').then((m) => m.InicioCoordinadorComponent)
+      },
+      {
+        path: 'materias',
+        canActivate: [roleGuard('COORDINADOR')],
+        title: 'TITULOS.MATERIAS_ADMIN',
+        loadComponent: () => import('./features/materias/pages/materias-admin/materias-admin.component').then((m) => m.MateriasAdminComponent)
       }
     ]
   },
@@ -65,6 +72,11 @@ export const routes: Routes = [
         path: '',
         title: 'TITULOS.INICIO',
         loadComponent: () => import('./features/public/pages/landing/landing.component').then((m) => m.LandingComponent)
+      },
+      {
+        path: 'materias',
+        title: 'TITULOS.MATERIAS',
+        loadComponent: () => import('./features/materias/pages/explorar-materias/explorar-materias.component').then((m) => m.ExplorarMateriasComponent)
       },
       {
         path: 'sin-permiso',

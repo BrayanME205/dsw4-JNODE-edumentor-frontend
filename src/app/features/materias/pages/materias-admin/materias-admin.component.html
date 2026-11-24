@@ -1,0 +1,100 @@
+<app-encabezado-pagina [titulo]="'MATERIAS.ADMIN_TITULO' | translate" [subtitulo]="'MATERIAS.ADMIN_SUBTITULO' | translate">
+  <button type="button" class="em-btn em-btn--primary em-btn--sm" (click)="nueva()">{{ 'MATERIAS.AGREGAR' | translate }}</button>
+</app-encabezado-pagina>
+
+<div class="admin">
+  <section class="em-card admin__lista">
+    <div class="em-field" style="margin-bottom: var(--em-space-4)">
+      <label class="em-label" for="buscar">{{ 'MATERIAS.BUSCAR' | translate }}</label>
+      <input id="buscar" type="search" class="em-input" [value]="busqueda()" (input)="buscar($event)">
+    </div>
+
+    @if (cargando()) {
+      <app-cargando [filas]="3" />
+    } @else if (errorLista()) {
+      <app-alerta tipo="error" [mensaje]="errorLista() | translate" />
+    } @else {
+      <div class="admin__tabla">
+        <table class="em-table">
+          <caption>{{ 'MATERIAS.CATALOGO_N' | translate: { n: filtradas().length } }}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ 'MATERIAS.CODIGO' | translate }}</th>
+              <th scope="col">{{ 'MATERIAS.NOMBRE' | translate }}</th>
+              <th scope="col">{{ 'MATERIAS.CARRERA' | translate }}</th>
+              <th scope="col">{{ 'MATERIAS.CREDITOS' | translate }}</th>
+              <th scope="col"><span class="em-sr-only">{{ 'MATERIAS.ACCIONES' | translate }}</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (m of filtradas(); track m.id) {
+              <tr [class.admin__fila--activa]="editando()?.id === m.id">
+                <td><strong>{{ m.codigoMateria }}</strong></td>
+                <td>{{ m.nombreMateria }}</td>
+                <td class="em-muted">{{ m.carrera }}</td>
+                <td>{{ m.creditos }}</td>
+                <td>
+                  <div class="em-cluster admin__acciones">
+                    <button type="button" class="em-btn em-btn--secondary em-btn--sm" (click)="editar(m)"
+                            [attr.aria-label]="('MATERIAS.EDITAR' | translate) + ' ' + m.nombreMateria">{{ 'MATERIAS.EDITAR' | translate }}</button>
+                    <button type="button" class="em-btn em-btn--danger em-btn--sm" (click)="porEliminar.set(m)"
+                            [attr.aria-label]="('MATERIAS.ELIMINAR' | translate) + ' ' + m.nombreMateria">{{ 'MATERIAS.ELIMINAR' | translate }}</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+
+  <section class="em-card admin__form" aria-labelledby="form-titulo">
+    <h2 id="form-titulo" class="admin__form-titulo">{{ (editando() ? 'MATERIAS.EDITAR_TITULO' : 'MATERIAS.NUEVA_TITULO') | translate }}</h2>
+    @if (editando(); as m) {
+      <p class="em-muted">{{ m.codigoMateria }} · {{ m.nombreMateria }}</p>
+    }
+    @if (errorForm()) {
+      <app-alerta tipo="error" [mensaje]="errorForm() | translate" />
+    }
+    <form [formGroup]="form" (ngSubmit)="guardar()" novalidate class="em-stack">
+      <div class="em-field">
+        <label class="em-label" for="codigo">{{ 'MATERIAS.CODIGO' | translate }}</label>
+        <input id="codigo" class="em-input" formControlName="codigoMateria" [attr.aria-invalid]="invalido('codigoMateria')" aria-describedby="codigo-error">
+        <span id="codigo-error" aria-live="polite">@if (invalido('codigoMateria')) {<span class="em-error">{{ mensaje('codigoMateria') | translate }}</span>}</span>
+      </div>
+      <div class="em-field">
+        <label class="em-label" for="nombre">{{ 'MATERIAS.NOMBRE' | translate }}</label>
+        <input id="nombre" class="em-input" formControlName="nombreMateria" [attr.aria-invalid]="invalido('nombreMateria')" aria-describedby="nombre-error">
+        <span id="nombre-error" aria-live="polite">@if (invalido('nombreMateria')) {<span class="em-error">{{ mensaje('nombreMateria') | translate }}</span>}</span>
+      </div>
+      <div class="em-field">
+        <label class="em-label" for="carrera">{{ 'MATERIAS.CARRERA' | translate }}</label>
+        <input id="carrera" class="em-input" formControlName="carrera" [attr.aria-invalid]="invalido('carrera')" aria-describedby="carrera-error">
+        <span id="carrera-error" aria-live="polite">@if (invalido('carrera')) {<span class="em-error">{{ mensaje('carrera') | translate }}</span>}</span>
+      </div>
+      <div class="em-field">
+        <label class="em-label" for="creditos">{{ 'MATERIAS.CREDITOS' | translate }}</label>
+        <input id="creditos" type="number" min="1" max="10" class="em-input" formControlName="creditos" [attr.aria-invalid]="invalido('creditos')" aria-describedby="creditos-ayuda creditos-error">
+        <span id="creditos-ayuda" class="em-hint">{{ 'MATERIAS.CREDITOS_RANGO' | translate }}</span>
+        <span id="creditos-error" aria-live="polite">@if (invalido('creditos')) {<span class="em-error">{{ mensaje('creditos') | translate }}</span>}</span>
+      </div>
+      <div class="em-cluster">
+        <button type="submit" class="em-btn em-btn--primary" [attr.aria-busy]="guardando()" [disabled]="guardando()">
+          {{ (editando() ? 'COMUN.GUARDAR' : 'MATERIAS.AGREGAR') | translate }}
+        </button>
+        @if (editando()) {
+          <button type="button" class="em-btn em-btn--ghost" (click)="nueva()">{{ 'COMUN.CANCELAR' | translate }}</button>
+        }
+      </div>
+    </form>
+  </section>
+</div>
+
+<app-confirmar-dialogo
+  [abierto]="porEliminar() !== null"
+  [titulo]="'MATERIAS.ELIMINAR_TITULO' | translate: { nombre: porEliminar()?.nombreMateria }"
+  [mensaje]="'MATERIAS.ELIMINAR_TEXTO' | translate"
+  [textoConfirmar]="'MATERIAS.ELIMINAR_CONFIRMAR' | translate"
+  (confirmado)="confirmarEliminacion()"
+  (cancelado)="porEliminar.set(null)" />

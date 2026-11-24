@@ -1,0 +1,45 @@
+<section class="em-escena franja">
+  <span class="em-burbuja em-burbuja--violeta" style="width: 260px; height: 260px; right: -80px; top: -120px" aria-hidden="true"></span>
+  <span class="em-burbuja em-burbuja--magenta" style="width: 150px; height: 150px; left: -50px; bottom: -80px" aria-hidden="true"></span>
+  <div class="em-container">
+    <div class="em-glass franja__panel">
+      <h1 class="em-titulo-seccion franja__titulo">{{ 'MATERIAS.TITULO' | translate }}</h1>
+      <p class="em-muted">{{ 'MATERIAS.SUBTITULO' | translate }}</p>
+      <div class="em-field" style="max-width: 36rem">
+        <label class="em-label" for="buscar-materia">{{ 'MATERIAS.BUSCAR' | translate }}</label>
+        <input id="buscar-materia" type="search" class="em-input" [value]="busqueda()" (input)="buscar($event)" aria-describedby="buscar-ayuda">
+        <span id="buscar-ayuda" class="em-hint">{{ 'MATERIAS.BUSCAR_AYUDA' | translate }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="em-container contenido">
+  @if (cargando()) {
+    <app-cargando [filas]="3" />
+  } @else if (error()) {
+    <app-alerta tipo="error" [mensaje]="error() | translate">
+      <button type="button" class="em-btn em-btn--secondary em-btn--sm" style="margin-left: var(--em-space-3)" (click)="cargar()">{{ 'COMUN.REINTENTAR' | translate }}</button>
+    </app-alerta>
+  } @else {
+    <div class="filtros">
+      <div class="em-cluster" role="group" [attr.aria-label]="'MATERIAS.FILTRAR_CARRERA' | translate">
+        <button type="button" class="em-chip" [attr.aria-pressed]="carrera() === null" (click)="carrera.set(null)">{{ 'MATERIAS.TODAS' | translate }}</button>
+        @for (c of carreras(); track c) {
+          <button type="button" class="em-chip" [attr.aria-pressed]="carrera() === c" (click)="carrera.set(c)">{{ c }}</button>
+        }
+      </div>
+      <span class="em-muted" aria-live="polite">{{ 'MATERIAS.CONTEO' | translate: { n: filtradas().length } }}</span>
+    </div>
+
+    @if (filtradas().length === 0) {
+      <app-estado-vacio [titulo]="'MATERIAS.SIN_RESULTADOS' | translate" [texto]="'MATERIAS.SIN_RESULTADOS_TEXTO' | translate" />
+    } @else {
+      <div class="em-grid">
+        @for (materia of filtradas(); track materia.id) {
+          <app-materia-card [materia]="materia" />
+        }
+      </div>
+    }
+  }
+</div>
