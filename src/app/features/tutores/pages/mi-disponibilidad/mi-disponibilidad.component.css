@@ -1,0 +1,11 @@
+.disp { display: flex; flex-wrap: wrap; gap: var(--em-space-5); align-items: flex-start; }
+.disp__horario { flex: 3 1 34rem; min-width: 0; padding: var(--em-space-5); }
+.disp__lateral { flex: 2 1 18rem; min-width: 0; display: grid; gap: var(--em-space-5); }
+.disp__panel { padding: var(--em-space-5); }
+.disp__titulo { font-size: 1.25rem; }
+.disp__horas { display: grid; grid-template-columns: 1fr 1fr; gap: var(--em-space-3); }
+.disp__dia { font-size: .875rem; margin: var(--em-space-4) 0 var(--em-space-2); color: var(--em-text-2); }
+.disp__lista { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--em-space-2); }
+.disp__lista li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--em-space-2);
+  padding: var(--em-space-2) var(--em-space-3); border-radius: 12px; background: var(--em-surface-2); font-weight: 600; }
+.disp__lista li.activo { background: var(--em-lavender); }

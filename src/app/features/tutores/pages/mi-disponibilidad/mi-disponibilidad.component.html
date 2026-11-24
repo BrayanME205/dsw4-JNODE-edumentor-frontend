@@ -1,0 +1,88 @@
+<app-encabezado-pagina [titulo]="'DISPONIBILIDAD.TITULO' | translate" [subtitulo]="'DISPONIBILIDAD.SUBTITULO' | translate" />
+
+@if (cargando()) {
+  <app-cargando [filas]="4" />
+} @else if (errorLista()) {
+  <app-alerta tipo="error" [mensaje]="errorLista() | translate">
+    <button type="button" class="em-btn em-btn--secondary em-btn--sm" style="margin-left: var(--em-space-3)" (click)="cargar()">{{ 'COMUN.REINTENTAR' | translate }}</button>
+  </app-alerta>
+} @else {
+  <div class="disp">
+    <section class="em-card disp__horario" aria-labelledby="vista-titulo">
+      <h2 id="vista-titulo" class="disp__titulo">{{ 'DISPONIBILIDAD.VISTA' | translate }}</h2>
+      @if (bloques().length === 0) {
+        <app-alerta tipo="aviso" [titulo]="'DISPONIBILIDAD.VACIO' | translate" [mensaje]="'DISPONIBILIDAD.VACIO_TEXTO' | translate" />
+      }
+      <app-horario-semanal [disponibilidades]="bloques()" [titulo]="'DISPONIBILIDAD.VISTA' | translate" />
+    </section>
+
+    <div class="disp__lateral">
+      <section class="em-card disp__panel" aria-labelledby="form-titulo">
+        <h2 id="form-titulo" class="disp__titulo">{{ (editando() ? 'DISPONIBILIDAD.EDITAR_TITULO' : 'DISPONIBILIDAD.NUEVO_TITULO') | translate }}</h2>
+        @if (errorForm()) {
+          <app-alerta tipo="error" [mensaje]="errorForm() | translate" />
+        }
+        <form [formGroup]="form" (ngSubmit)="guardar()" novalidate class="em-stack">
+          <div class="em-field">
+            <label class="em-label" for="dia">{{ 'DISPONIBILIDAD.DIA' | translate }}</label>
+            <select id="dia" class="em-select" formControlName="diaSemana">
+              @for (d of dias; track d) {
+                <option [value]="d">{{ 'DIAS.' + d | translate }}</option>
+              }
+            </select>
+          </div>
+          <div class="disp__horas">
+            <div class="em-field">
+              <label class="em-label" for="inicio">{{ 'DISPONIBILIDAD.DESDE' | translate }}</label>
+              <input id="inicio" type="time" step="3600" class="em-input" formControlName="horaInicio">
+            </div>
+            <div class="em-field">
+              <label class="em-label" for="fin">{{ 'DISPONIBILIDAD.HASTA' | translate }}</label>
+              <input id="fin" type="time" step="3600" class="em-input" formControlName="horaFin"
+                     [attr.aria-invalid]="form.hasError('rangoInvalido')" aria-describedby="rango-error">
+            </div>
+          </div>
+          <span id="rango-error" aria-live="polite">
+            @if (form.hasError('rangoInvalido')) {<span class="em-error">{{ 'DISPONIBILIDAD.RANGO_INVALIDO' | translate }}</span>}
+          </span>
+          <div class="em-cluster">
+            <button type="submit" class="em-btn em-btn--primary" [disabled]="guardando()" [attr.aria-busy]="guardando()">
+              {{ (editando() ? 'COMUN.GUARDAR' : 'DISPONIBILIDAD.AGREGAR') | translate }}
+            </button>
+            @if (editando()) {
+              <button type="button" class="em-btn em-btn--ghost" (click)="nuevo()">{{ 'COMUN.CANCELAR' | translate }}</button>
+            }
+          </div>
+        </form>
+      </section>
+
+      @if (porDia().length) {
+        <section class="em-card disp__panel" aria-labelledby="lista-titulo">
+          <h2 id="lista-titulo" class="disp__titulo">{{ 'DISPONIBILIDAD.MIS_BLOQUES' | translate }}</h2>
+          @for (grupo of porDia(); track grupo.dia) {
+            <h3 class="disp__dia">{{ 'DIAS.' + grupo.dia | translate }}</h3>
+            <ul class="disp__lista">
+              @for (b of grupo.bloques; track b.id) {
+                <li [class.activo]="editando()?.id === b.id">
+                  <span>{{ hora(b.horaInicio) }} – {{ hora(b.horaFin) }}</span>
+                  <span class="em-cluster" style="gap: var(--em-space-2)">
+                    <button type="button" class="em-btn em-btn--ghost em-btn--sm" (click)="editar(b)">{{ 'MATERIAS.EDITAR' | translate }}</button>
+                    <button type="button" class="em-btn em-btn--danger em-btn--sm" (click)="porQuitar.set(b)">{{ 'DISPONIBILIDAD.QUITAR' | translate }}</button>
+                  </span>
+                </li>
+              }
+            </ul>
+          }
+        </section>
+      }
+    </div>
+  </div>
+}
+
+<app-confirmar-dialogo
+  [abierto]="porQuitar() !== null"
+  [titulo]="'DISPONIBILIDAD.QUITAR_TITULO' | translate"
+  [mensaje]="'DISPONIBILIDAD.QUITAR_TEXTO' | translate"
+  [textoConfirmar]="'DISPONIBILIDAD.QUITAR' | translate"
+  (confirmado)="confirmarQuitar()"
+  (cancelado)="porQuitar.set(null)" />
