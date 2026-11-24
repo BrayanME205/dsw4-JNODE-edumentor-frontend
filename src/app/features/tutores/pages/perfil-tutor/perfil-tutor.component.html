@@ -1,0 +1,39 @@
+<div class="em-container contenido">
+  <a routerLink="/tutores" class="volver">← {{ 'TUTORES.VOLVER' | translate }}</a>
+
+  @if (tutor(); as t) {
+    <section class="em-escena perfil">
+      <span class="em-burbuja em-burbuja--violeta" style="width: 220px; height: 220px; right: -60px; top: -100px" aria-hidden="true"></span>
+      <span class="em-burbuja em-burbuja--perla" style="width: 140px; height: 140px; left: 30%; bottom: -80px" aria-hidden="true"></span>
+      <div class="em-glass perfil__panel">
+        <app-avatar [nombre]="t.nombre + ' ' + t.apellido" [grande]="true" />
+        <div class="perfil__datos">
+          <p class="perfil__rol">{{ 'ROLES.TUTOR' | translate }}</p>
+          <h1 class="em-titulo-pantalla">{{ t.nombre }} {{ t.apellido }}</h1>
+          <app-estrellas [valor]="t.promedioCalificacion" [total]="t.totalEvaluaciones" />
+        </div>
+        @if (puedeReservar()) {
+          <a routerLink="/app/reservar" [queryParams]="{ tutorId: t.id }" class="em-btn em-btn--primary perfil__cta">
+            {{ 'TUTORES.RESERVAR_CON' | translate: { nombre: t.nombre } }}
+          </a>
+        }
+      </div>
+    </section>
+
+    <section class="em-card bloque" aria-labelledby="horario-titulo">
+      <h2 id="horario-titulo" class="bloque__titulo">{{ 'TUTORES.HORARIO' | translate }}</h2>
+      @if (bloques().length) {
+        <p class="em-muted">{{ 'TUTORES.HORARIO_TEXTO' | translate }}</p>
+        <app-horario-semanal [disponibilidades]="bloques()" [titulo]="'TUTORES.HORARIO_DE' | translate: { nombre: t.nombre }" />
+      } @else {
+        <p class="em-muted">{{ 'TUTORES.SIN_HORARIO' | translate }}</p>
+      }
+    </section>
+
+    <!-- REQ-18: <app-resenas-tutor [tutorId]="t.id" /> -->
+  } @else if (cargando()) {
+    <app-cargando [filas]="3" />
+  } @else if (error()) {
+    <app-alerta tipo="error" [mensaje]="error() | translate" />
+  }
+</div>
