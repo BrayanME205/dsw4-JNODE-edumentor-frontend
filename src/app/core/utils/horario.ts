@@ -47,3 +47,14 @@ export function fechaDelBloque(lunes: Date, dia: DiaSemana, hora: number): Date 
   fecha.setHours(hora, 0, 0, 0);
   return fecha;
 }
+
+/** ¿Algún bloque de ese día cubre por completo el intervalo [desde, hasta) en minutos? */
+export function cubreIntervalo(bloques: Disponibilidad[], dia: DiaSemana, desde: number, hasta: number): boolean {
+  return bloques.some((b) => b.diaSemana === dia && aMinutos(b.horaInicio) <= desde && hasta <= aMinutos(b.horaFin));
+}
+
+/** Día de la semana de una fecha, con los nombres de Java. */
+export function diaDe(fecha: Date): DiaSemana {
+  const nombres: DiaSemana[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  return nombres[fecha.getDay()];
+}
