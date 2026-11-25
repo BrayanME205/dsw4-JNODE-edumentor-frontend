@@ -13,13 +13,14 @@ import { AlertaComponent } from '../../../../shared/components/alerta/alerta.com
 import { AvatarComponent } from '../../../../shared/components/avatar/avatar.component';
 import { CargandoComponent } from '../../../../shared/components/cargando/cargando.component';
 import { EstrellasComponent } from '../../../../shared/components/estrellas/estrellas.component';
+import { ResenasTutorComponent } from '../../components/resenas-tutor/resenas-tutor.component';
 import { HorarioSemanalComponent } from '../../../../shared/components/horario-semanal/horario-semanal.component';
 
-/** Perfil público de un tutor: datos, calificación y horario semanal. */
+/** Perfil público de un tutor: datos, calificación, horario semanal y reseñas. */
 @Component({
   selector: 'app-perfil-tutor',
   standalone: true,
-  imports: [RouterLink, TranslateModule, AlertaComponent, AvatarComponent, CargandoComponent, EstrellasComponent, HorarioSemanalComponent],
+  imports: [RouterLink, TranslateModule, AlertaComponent, AvatarComponent, CargandoComponent, EstrellasComponent, HorarioSemanalComponent, ResenasTutorComponent],
   templateUrl: './perfil-tutor.component.html',
   styleUrl: './perfil-tutor.component.css'
 })
