@@ -1,0 +1,14 @@
+.bloque { padding: var(--em-space-5); }
+.bloque__titulo { font-size: 1.125rem; margin: 0 0 var(--em-space-3); }
+.selector { border: 0; padding: 0; margin: 0; }
+.selector__estrellas { display: flex; gap: var(--em-space-1); }
+.estrella { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; cursor: pointer;
+  font-size: 1.75rem; color: var(--em-border-control); transition: transform 150ms var(--em-ease); }
+.estrella--activa { color: #B45309; }
+.estrella:hover { transform: scale(1.1); }
+/* El foco del radio (oculto) se dibuja sobre la estrella */
+.estrella:has(input:focus-visible) { outline: 3px solid var(--em-focus); outline-offset: 2px; }
+.selector__texto { display: block; margin-top: var(--em-space-1); font-weight: 600; }
+.estrellas-fijas { font-size: 1.5rem; color: #B45309; margin: 0 0 var(--em-space-2); letter-spacing: 2px; }
+.comentario { margin: 0 0 var(--em-space-3); padding: var(--em-space-3) var(--em-space-4); border-radius: 14px; background: var(--em-surface-2); font-style: italic; }
+@media (prefers-reduced-motion: reduce) { .estrella { transition: none; } .estrella:hover { transform: none; } }

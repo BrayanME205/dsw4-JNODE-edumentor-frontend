@@ -1,0 +1,51 @@
+@if (puedeEvaluar() || esperando() || evaluacion()) {
+  <section id="evaluar" class="em-card bloque" aria-labelledby="evaluacion-titulo">
+    <h2 id="evaluacion-titulo" class="bloque__titulo">{{ 'EVALUACION.TITULO' | translate }}</h2>
+
+    @if (evaluacion(); as e) {
+      <p class="estrellas-fijas">
+        <span aria-hidden="true">{{ '★'.repeat(e.calificacionEstrellas) }}{{ '☆'.repeat(5 - e.calificacionEstrellas) }}</span>
+        <span class="em-sr-only">{{ 'EVALUACION.N_ESTRELLAS' | translate: { n: e.calificacionEstrellas } }}</span>
+      </p>
+      @if (e.comentario) {
+        <blockquote class="comentario">{{ e.comentario }}</blockquote>
+      }
+      <p class="em-hint">{{ 'EVALUACION.FECHA' | translate: { fecha: (e.fechaEvaluacion | fecha: 'd MMM yyyy') } }}</p>
+    } @else if (esperando()) {
+      <p class="em-muted">{{ 'EVALUACION.ESPERANDO' | translate }}</p>
+    } @else {
+      <p class="em-muted">{{ 'EVALUACION.INVITACION' | translate: { nombre: sesion().tutorNombre } }}</p>
+      @if (error()) {
+        <app-alerta tipo="error" [mensaje]="error() | translate" />
+      }
+      <form [formGroup]="form" (ngSubmit)="enviar()" novalidate class="em-stack">
+        <fieldset class="selector" (mouseleave)="sobre.set(0)" aria-describedby="estrellas-error">
+          <legend class="em-label">{{ 'EVALUACION.CALIFICACION' | translate }}</legend>
+          <div class="selector__estrellas">
+            @for (n of estrellas; track n) {
+              <label class="estrella" [class.estrella--activa]="n <= marcadas()" (mouseenter)="sobre.set(n)">
+                <input type="radio" class="em-sr-only" formControlName="calificacionEstrellas" [value]="n">
+                <span aria-hidden="true">★</span>
+                <span class="em-sr-only">{{ 'EVALUACION.N_ESTRELLAS' | translate: { n: n } }}</span>
+              </label>
+            }
+          </div>
+          @if (marcadas()) {
+            <span class="selector__texto" aria-hidden="true">{{ 'EVALUACION.NIVEL_' + marcadas() | translate }}</span>
+          }
+          <span id="estrellas-error" aria-live="polite">
+            @if (form.controls.calificacionEstrellas.invalid && form.controls.calificacionEstrellas.touched) {
+              <span class="em-error">{{ 'EVALUACION.ELEGI' | translate }}</span>
+            }
+          </span>
+        </fieldset>
+        <div class="em-field">
+          <label class="em-label" for="comentario">{{ 'EVALUACION.COMENTARIO' | translate }}</label>
+          <textarea id="comentario" rows="4" maxlength="500" class="em-textarea" formControlName="comentario" aria-describedby="comentario-ayuda"></textarea>
+          <span id="comentario-ayuda" class="em-hint">{{ 'EVALUACION.OPCIONAL' | translate }} · {{ valores().comentario?.length ?? 0 }}/500</span>
+        </div>
+        <button type="submit" class="em-btn em-btn--primary" [disabled]="enviando()" [attr.aria-busy]="enviando()">{{ 'EVALUACION.ENVIAR' | translate }}</button>
+      </form>
+    }
+  </section>
+}
