@@ -58,8 +58,11 @@
         </section>
       }
 
-      <!-- REQ-18: <app-recursos-sesion [sesion]="s" /> -->
-      <!-- REQ-18: <app-evaluacion-sesion [sesion]="s" (evaluada)="cargar()" /> -->
+      <!-- El coordinador no participa: el backend no le muestra recursos ni evaluación -->
+      @if (rol() !== 'COORDINADOR') {
+        <app-evaluacion-sesion [sesion]="s" (evaluada)="cargar()" />
+        <app-recursos-sesion [sesion]="s" />
+      }
     </div>
 
     <aside class="em-card bloque detalle__lateral" aria-labelledby="acciones-titulo">

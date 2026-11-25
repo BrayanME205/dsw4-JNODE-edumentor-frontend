@@ -363,5 +363,47 @@
     "SOLICITUDES": "Solicitudes por responder ({{n}})",
     "SIN_SOLICITUDES": "No hay solicitudes nuevas. ¡Todo al día!",
     "SIN_PROXIMAS_TUTOR": "No tenés sesiones confirmadas próximamente."
+  },
+  "RECURSOS": {
+    "TITULO": "Material de estudio",
+    "AGREGAR": "Agregar recurso",
+    "VACIO": "Todavía no hay material. Compartí un enlace útil para la sesión.",
+    "AUN_NO": "Cuando la tutoría se confirme, podrán compartir material acá.",
+    "NUEVA_PESTANA": "(se abre en otra pestaña)",
+    "TITULO_CAMPO": "Título",
+    "URL": "Enlace",
+    "URL_INVALIDA": "Escribí un enlace completo que empiece con https://",
+    "TIPO": "Tipo",
+    "TIPO_ENLACE": "Enlace",
+    "TIPO_PDF": "PDF",
+    "TIPO_VIDEO": "Video",
+    "TIPO_DOCUMENTO": "Documento",
+    "TIPO_PRESENTACION": "Presentación",
+    "TIPO_OTRO": "Otro",
+    "GUARDAR": "Guardar recurso",
+    "AGREGADO": "Recurso agregado"
+  },
+  "EVALUACION": {
+    "TITULO": "Evaluación",
+    "INVITACION": "¿Cómo te fue con {{nombre}}? Tu opinión ayuda a otros estudiantes.",
+    "CALIFICACION": "Calificación",
+    "N_ESTRELLAS": "{{n}} de 5 estrellas",
+    "ELEGI": "Elegí de 1 a 5 estrellas",
+    "NIVEL_1": "Mala",
+    "NIVEL_2": "Regular",
+    "NIVEL_3": "Buena",
+    "NIVEL_4": "Muy buena",
+    "NIVEL_5": "¡Excelente!",
+    "COMENTARIO": "Comentario",
+    "OPCIONAL": "Opcional",
+    "ENVIAR": "Enviar evaluación",
+    "GRACIAS": "¡Gracias por evaluar la tutoría!",
+    "ESPERANDO": "El estudiante todavía no evaluó esta tutoría.",
+    "FECHA": "Evaluada el {{fecha}}"
+  },
+  "RESENAS": {
+    "TITULO": "Lo que dicen sus estudiantes",
+    "VACIO": "Todavía no tiene reseñas.",
+    "DISTRIBUCION": "Distribución de calificaciones"
   }
 }
