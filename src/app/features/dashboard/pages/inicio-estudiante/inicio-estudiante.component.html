@@ -1,0 +1,40 @@
+<section class="em-banner em-escena">
+  <span class="em-burbuja em-burbuja--magenta" style="width: 170px; height: 170px; left: 40%; bottom: -90px" aria-hidden="true"></span>
+  <span class="em-burbuja em-burbuja--violeta" style="width: 130px; height: 130px; left: -40px; top: -50px" aria-hidden="true"></span>
+  <div class="em-glass em-banner__texto">
+    <h1 class="em-titulo-seccion" style="font-size: 1.75rem">{{ 'INICIO.HOLA' | translate: { nombre: usuario()?.nombre } }}</h1>
+    <p class="em-muted">{{ 'INICIO.ESTUDIANTE_TEXTO' | translate: { n: completadas() } }}</p>
+    <div class="em-cluster">
+      <a routerLink="/app/reservar" class="em-btn em-btn--primary">{{ 'TUTORIAS.NUEVA' | translate }}</a>
+      <a routerLink="/tutores" class="em-btn em-btn--secondary">{{ 'INICIO.VER_TUTORES' | translate }}</a>
+    </div>
+  </div>
+  <img src="assets/img/calendario.webp" alt="" class="em-banner__img">
+</section>
+
+@if (cargando()) {
+  <app-cargando [filas]="2" />
+} @else {
+  @if (porEvaluar().length) {
+    <div class="em-alert em-alert--aviso" role="status" style="margin-bottom: var(--em-space-5)">
+      {{ 'INICIO.POR_EVALUAR' | translate: { n: porEvaluar().length } }}
+      <a [routerLink]="['/app/tutorias', porEvaluar()[0].id]" fragment="evaluar">{{ 'ACCIONES.EVALUAR' | translate }}</a>
+    </div>
+  }
+
+  <div class="em-cluster" style="justify-content: space-between; margin-bottom: var(--em-space-3)">
+    <h2 style="font-size: 1.25rem; margin: 0">{{ 'INICIO.PROXIMAS' | translate }}</h2>
+    <a routerLink="/app/tutorias">{{ 'INICIO.VER_TODAS' | translate }}</a>
+  </div>
+  @if (proximas().length) {
+    <div class="em-stack">
+      @for (sesion of proximas(); track sesion.id) {
+        <app-sesion-item [sesion]="sesion" (cambio)="cargar()" />
+      }
+    </div>
+  } @else {
+    <app-estado-vacio [titulo]="'INICIO.SIN_PROXIMAS' | translate" [texto]="'INICIO.SIN_PROXIMAS_TEXTO' | translate">
+      <a routerLink="/materias" class="em-btn em-btn--secondary">{{ 'MATERIAS.TITULO' | translate }}</a>
+    </app-estado-vacio>
+  }
+}
