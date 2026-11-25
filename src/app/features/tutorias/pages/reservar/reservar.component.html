@@ -1,0 +1,106 @@
+<app-encabezado-pagina [titulo]="'RESERVAR.TITULO' | translate" [subtitulo]="'RESERVAR.SUBTITULO' | translate" />
+
+@if (cargando()) {
+  <app-cargando [filas]="4" />
+} @else {
+  <form [formGroup]="form" (ngSubmit)="enviar()" novalidate class="reservar">
+    <div class="reservar__pasos">
+      <section class="em-card paso" aria-labelledby="paso1">
+        <h2 id="paso1" class="paso__titulo"><span class="paso__numero" aria-hidden="true">1</span>{{ 'RESERVAR.PASO_1' | translate }}</h2>
+        <div class="paso__campos">
+          <div class="em-field">
+            <label class="em-label" for="materia">{{ 'RESERVAR.MATERIA' | translate }}</label>
+            <select id="materia" class="em-select" formControlName="materiaId"
+                    [attr.aria-invalid]="form.controls.materiaId.invalid && form.controls.materiaId.touched" aria-describedby="materia-error">
+              <option [ngValue]="null">{{ 'RESERVAR.ELEGI_MATERIA' | translate }}</option>
+              @for (m of materias(); track m.id) {
+                <option [ngValue]="m.id">{{ m.codigoMateria }} · {{ m.nombreMateria }}</option>
+              }
+            </select>
+            <span id="materia-error" aria-live="polite">
+              @if (form.controls.materiaId.invalid && form.controls.materiaId.touched) {<span class="em-error">{{ 'COMUN.OBLIGATORIO' | translate }}</span>}
+            </span>
+          </div>
+          <div class="em-field">
+            <label class="em-label" for="tutor">{{ 'RESERVAR.TUTOR' | translate }}</label>
+            <select id="tutor" class="em-select" formControlName="tutorId"
+                    [attr.aria-invalid]="form.controls.tutorId.invalid && form.controls.tutorId.touched" aria-describedby="tutor-error">
+              <option [ngValue]="null">{{ 'RESERVAR.ELEGI_TUTOR' | translate }}</option>
+              @for (t of tutores(); track t.id) {
+                <option [ngValue]="t.id">{{ t.nombre }} {{ t.apellido }}</option>
+              }
+            </select>
+            <span id="tutor-error" aria-live="polite">
+              @if (form.controls.tutorId.invalid && form.controls.tutorId.touched) {<span class="em-error">{{ 'COMUN.OBLIGATORIO' | translate }}</span>}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="em-card paso" aria-labelledby="paso2">
+        <h2 id="paso2" class="paso__titulo"><span class="paso__numero" aria-hidden="true">2</span>{{ 'RESERVAR.PASO_2' | translate }}</h2>
+        @if (!tutorElegido()) {
+          <p class="em-muted">{{ 'RESERVAR.PRIMERO_TUTOR' | translate }}</p>
+        } @else if (cargandoHorario()) {
+          <app-cargando [filas]="2" />
+        } @else if (bloques().length === 0) {
+          <app-alerta tipo="aviso" [mensaje]="'TUTORES.SIN_HORARIO' | translate" />
+        } @else {
+          <div class="semana">
+            <button type="button" class="em-btn em-btn--ghost em-btn--sm" [disabled]="esPrimeraSemana()" (click)="cambiarSemana(-1)">← {{ 'RESERVAR.ANTERIOR' | translate }}</button>
+            <span class="semana__texto" aria-live="polite">{{ 'RESERVAR.SEMANA_DEL' | translate: { fecha: (lunes() | fecha: 'd MMM') } }}</span>
+            <button type="button" class="em-btn em-btn--ghost em-btn--sm" [disabled]="esUltimaSemana()" (click)="cambiarSemana(1)">{{ 'RESERVAR.SIGUIENTE' | translate }} →</button>
+          </div>
+          <app-horario-semanal [disponibilidades]="bloques()" [lunes]="lunes()" [ocupados]="ocupados()" [seleccionable]="true"
+                               [elegido]="claveElegida()" [titulo]="'TUTORES.HORARIO_DE' | translate: { nombre: tutorElegido()?.nombre }"
+                               (elegir)="elegir($event)" />
+          @if (intentoEnviar() && !elegido()) {
+            <p class="em-error" role="alert">{{ 'RESERVAR.ELEGI_HORA' | translate }}</p>
+          }
+        }
+      </section>
+    </div>
+
+    <aside class="em-escena resumen-escena" aria-labelledby="resumen-titulo">
+      <span class="em-burbuja em-burbuja--magenta" style="width: 150px; height: 150px; right: -50px; top: -60px" aria-hidden="true"></span>
+      <span class="em-burbuja em-burbuja--violeta" style="width: 120px; height: 120px; left: -40px; bottom: -40px" aria-hidden="true"></span>
+      <div class="em-glass resumen">
+        <h2 id="resumen-titulo" class="paso__titulo"><span class="paso__numero" aria-hidden="true">3</span>{{ 'RESERVAR.PASO_3' | translate }}</h2>
+        <dl class="resumen__datos">
+          <dt>{{ 'RESERVAR.MATERIA' | translate }}</dt>
+          <dd>{{ materiaElegida()?.nombreMateria ?? '—' }}</dd>
+          <dt>{{ 'RESERVAR.TUTOR' | translate }}</dt>
+          <dd>{{ tutorElegido() ? tutorElegido()!.nombre + ' ' + tutorElegido()!.apellido : '—' }}</dd>
+          <dt>{{ 'RESERVAR.CUANDO' | translate }}</dt>
+          <dd>{{ fechaElegida() ? (fechaElegida() | fecha: 'EEEE d MMM, HH:mm') : '—' }}</dd>
+        </dl>
+
+        <div class="em-field">
+          <label class="em-label" for="duracion">{{ 'RESERVAR.DURACION' | translate }}</label>
+          <select id="duracion" class="em-select" formControlName="duracionMinutos" aria-describedby="duracion-error">
+            @for (d of duraciones; track d) {
+              <option [ngValue]="d">{{ d }} {{ 'COMUN.MIN' | translate }}</option>
+            }
+          </select>
+          <span id="duracion-error" aria-live="polite">
+            @if (!cabe()) {<span class="em-error">{{ 'RESERVAR.NO_CABE' | translate }}</span>}
+          </span>
+        </div>
+
+        <fieldset class="modalidad">
+          <legend class="em-label">{{ 'RESERVAR.MODALIDAD' | translate }}</legend>
+          <label class="modalidad__opcion"><input type="radio" formControlName="modalidad" value="VIRTUAL"> {{ 'MODALIDAD.VIRTUAL' | translate }}</label>
+          <label class="modalidad__opcion"><input type="radio" formControlName="modalidad" value="PRESENCIAL"> {{ 'MODALIDAD.PRESENCIAL' | translate }}</label>
+        </fieldset>
+
+        @if (error()) {
+          <app-alerta tipo="error" [mensaje]="error() | translate" />
+        }
+        <button type="submit" class="em-btn em-btn--primary resumen__enviar" [disabled]="enviando()" [attr.aria-busy]="enviando()">
+          {{ 'RESERVAR.ENVIAR' | translate }}
+        </button>
+        <p class="em-hint">{{ 'RESERVAR.NOTA' | translate }}</p>
+      </div>
+    </aside>
+  </form>
+}
