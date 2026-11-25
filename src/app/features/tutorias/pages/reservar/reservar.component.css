@@ -1,0 +1,19 @@
+.reservar { display: flex; flex-wrap: wrap; gap: var(--em-space-5); align-items: flex-start; }
+.reservar__pasos { flex: 3 1 34rem; min-width: 0; display: grid; gap: var(--em-space-5); }
+.paso { padding: var(--em-space-5); }
+.paso__titulo { display: flex; align-items: center; gap: var(--em-space-3); font-size: 1.125rem; margin-bottom: var(--em-space-4); }
+.paso__numero { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--em-primary); color: #fff; font-size: .875rem; }
+.paso__campos { display: grid; gap: var(--em-space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.semana { display: flex; align-items: center; justify-content: space-between; gap: var(--em-space-3); margin-bottom: var(--em-space-3); }
+.semana__texto { font-weight: 700; }
+.resumen-escena { flex: 2 1 18rem; min-width: 0; position: sticky; top: var(--em-space-5); border-radius: 28px; padding: var(--em-space-4);
+  background: linear-gradient(135deg, #EFEAFB, #FBEAF4); }
+.resumen { padding: var(--em-space-5); display: grid; gap: var(--em-space-4); }
+.resumen .paso__titulo { margin: 0; }
+.resumen__datos { display: grid; grid-template-columns: auto 1fr; gap: var(--em-space-2) var(--em-space-4); margin: 0; font-size: var(--em-text-xs); }
+.resumen__datos dt { color: var(--em-text-2); }
+.resumen__datos dd { margin: 0; font-weight: 600; }
+.modalidad { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--em-space-2) var(--em-space-4); }
+.modalidad legend { margin-bottom: var(--em-space-2); }
+.modalidad__opcion { display: flex; align-items: center; gap: var(--em-space-2); min-height: 44px; }
+.resumen__enviar { width: 100%; }

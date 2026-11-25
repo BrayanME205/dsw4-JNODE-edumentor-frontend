@@ -1,0 +1,56 @@
+<app-encabezado-pagina [titulo]="'SUPERVISION.TITULO' | translate" [subtitulo]="'SUPERVISION.SUBTITULO' | translate" />
+
+@if (cargando()) {
+  <app-cargando [filas]="4" />
+} @else if (error()) {
+  <app-alerta tipo="error" [mensaje]="error() | translate">
+    <button type="button" class="em-btn em-btn--secondary em-btn--sm" style="margin-left: var(--em-space-3)" (click)="cargar()">{{ 'COMUN.REINTENTAR' | translate }}</button>
+  </app-alerta>
+} @else {
+  <div class="conteos" role="group" [attr.aria-label]="'SUPERVISION.FILTRAR' | translate">
+    @for (e of estados; track e) {
+      <button type="button" class="conteo" [attr.aria-pressed]="estado() === e" (click)="alternarEstado(e)">
+        <app-estado-badge [estado]="e" />
+        <strong>{{ conteos()[e] }}</strong>
+      </button>
+    }
+  </div>
+
+  <section class="em-card" style="padding: var(--em-space-5)">
+    <div class="em-field" style="max-width: 28rem; margin-bottom: var(--em-space-4)">
+      <label class="em-label" for="buscar-sesion">{{ 'SUPERVISION.BUSCAR' | translate }}</label>
+      <input id="buscar-sesion" type="search" class="em-input" [value]="busqueda()" (input)="buscar($event)">
+    </div>
+    @if (filtradas().length === 0) {
+      <p class="em-muted">{{ 'SUPERVISION.SIN_RESULTADOS' | translate }}</p>
+    } @else {
+      <div class="tabla">
+        <table class="em-table">
+          <caption aria-live="polite">{{ 'SUPERVISION.CONTEO' | translate: { n: filtradas().length } }}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ 'SUPERVISION.FECHA' | translate }}</th>
+              <th scope="col">{{ 'RESERVAR.MATERIA' | translate }}</th>
+              <th scope="col">{{ 'DETALLE.ESTUDIANTE' | translate }}</th>
+              <th scope="col">{{ 'DETALLE.TUTOR' | translate }}</th>
+              <th scope="col">{{ 'SUPERVISION.ESTADO' | translate }}</th>
+              <th scope="col"><span class="em-sr-only">{{ 'MATERIAS.ACCIONES' | translate }}</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (s of filtradas(); track s.id) {
+              <tr>
+                <td>{{ s.fechaHora | fecha: 'd MMM yyyy, HH:mm' }}</td>
+                <td><strong>{{ s.materiaCodigo }}</strong> {{ s.materiaNombre }}</td>
+                <td>{{ s.estudianteNombre }}</td>
+                <td>{{ s.tutorNombre }}</td>
+                <td><app-estado-badge [estado]="s.estado" /></td>
+                <td><a [routerLink]="['/app/tutorias', s.id]" [attr.aria-label]="('SUPERVISION.VER' | translate) + ' ' + s.materiaNombre">{{ 'SUPERVISION.VER' | translate }}</a></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+}

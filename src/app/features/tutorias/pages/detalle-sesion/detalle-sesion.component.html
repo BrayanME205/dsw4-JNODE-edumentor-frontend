@@ -1,0 +1,78 @@
+<a [routerLink]="rol() === 'COORDINADOR' ? '/app/supervision' : '/app/tutorias'" class="volver">← {{ 'DETALLE.VOLVER' | translate }}</a>
+
+@if (sesion(); as s) {
+  <section class="em-escena cabecera">
+    <span class="em-burbuja em-burbuja--violeta" style="width: 220px; height: 220px; right: -70px; top: -110px" aria-hidden="true"></span>
+    <span class="em-burbuja em-burbuja--magenta" style="width: 120px; height: 120px; left: 25%; bottom: -70px" aria-hidden="true"></span>
+    <div class="em-glass cabecera__panel">
+      <div class="cabecera__fila">
+        <div>
+          <p class="cabecera__codigo">{{ s.materiaCodigo }}</p>
+          <h1 class="em-titulo-pantalla">{{ s.materiaNombre }}</h1>
+          <p class="em-muted">{{ s.fechaHora | fecha: 'EEEE d MMMM, HH:mm' }} – {{ s.fechaHoraFin | fecha: 'HH:mm' }}</p>
+        </div>
+        <app-estado-badge [estado]="s.estado" />
+      </div>
+      <app-ruta-estado [estado]="s.estado" />
+    </div>
+  </section>
+
+  <div class="detalle">
+    <div class="detalle__principal">
+      <section class="em-card bloque" aria-labelledby="datos-titulo">
+        <h2 id="datos-titulo" class="bloque__titulo">{{ 'DETALLE.DATOS' | translate }}</h2>
+        <dl class="datos">
+          <div><dt>{{ 'DETALLE.ESTUDIANTE' | translate }}</dt><dd><app-avatar [nombre]="s.estudianteNombre" /> {{ s.estudianteNombre }}</dd></div>
+          <div><dt>{{ 'DETALLE.TUTOR' | translate }}</dt><dd><app-avatar [nombre]="s.tutorNombre" /> <a [routerLink]="['/tutores', s.tutorId]">{{ s.tutorNombre }}</a></dd></div>
+          <div><dt>{{ 'RESERVAR.DURACION' | translate }}</dt><dd>{{ s.duracionMinutos }} {{ 'COMUN.MIN' | translate }}</dd></div>
+          <div><dt>{{ 'RESERVAR.MODALIDAD' | translate }}</dt><dd>{{ 'MODALIDAD.' + s.modalidad | translate }}</dd></div>
+        </dl>
+      </section>
+
+      @if (s.resumenTrabajo) {
+        <section class="em-card bloque" aria-labelledby="resumen-titulo">
+          <h2 id="resumen-titulo" class="bloque__titulo">{{ 'DETALLE.RESUMEN' | translate }}</h2>
+          <p class="resumen">{{ s.resumenTrabajo }}</p>
+        </section>
+      }
+
+      @if (puedeFinalizar()) {
+        <section id="finalizar" class="em-card bloque" aria-labelledby="finalizar-titulo">
+          <h2 id="finalizar-titulo" class="bloque__titulo">{{ 'DETALLE.FINALIZAR_TITULO' | translate }}</h2>
+          <p class="em-muted">{{ 'DETALLE.FINALIZAR_TEXTO' | translate }}</p>
+          @if (errorFinalizar()) {
+            <app-alerta tipo="error" [mensaje]="errorFinalizar() | translate" />
+          }
+          <form [formGroup]="formFinalizar" (ngSubmit)="finalizar()" novalidate class="em-stack">
+            <div class="em-field">
+              <label class="em-label" for="resumen">{{ 'DETALLE.RESUMEN' | translate }}</label>
+              <textarea id="resumen" rows="5" maxlength="1000" class="em-textarea" formControlName="resumen" aria-describedby="resumen-ayuda resumen-error"
+                        [attr.aria-invalid]="formFinalizar.controls.resumen.invalid && formFinalizar.controls.resumen.touched"></textarea>
+              <span id="resumen-ayuda" class="em-hint">{{ formFinalizar.controls.resumen.value.length }}/1000</span>
+              <span id="resumen-error" aria-live="polite">
+                @if (formFinalizar.controls.resumen.invalid && formFinalizar.controls.resumen.touched) {<span class="em-error">{{ 'COMUN.OBLIGATORIO' | translate }}</span>}
+              </span>
+            </div>
+            <button type="submit" class="em-btn em-btn--primary" [disabled]="finalizando()" [attr.aria-busy]="finalizando()">{{ 'ACCIONES.FINALIZAR' | translate }}</button>
+          </form>
+        </section>
+      }
+
+      <!-- REQ-18: <app-recursos-sesion [sesion]="s" /> -->
+      <!-- REQ-18: <app-evaluacion-sesion [sesion]="s" (evaluada)="cargar()" /> -->
+    </div>
+
+    <aside class="em-card bloque detalle__lateral" aria-labelledby="acciones-titulo">
+      <h2 id="acciones-titulo" class="bloque__titulo">{{ 'DETALLE.ACCIONES' | translate }}</h2>
+      <app-acciones-sesion [sesion]="s" [enDetalle]="true" (cambio)="cargar()" />
+      @if (fueraDePlazo()) {
+        <app-alerta tipo="aviso" [mensaje]="'DETALLE.FUERA_DE_PLAZO' | translate" />
+      }
+      <p class="em-hint">{{ 'DETALLE.AYUDA_' + s.estado | translate }}</p>
+    </aside>
+  </div>
+} @else if (cargando()) {
+  <app-cargando [filas]="4" />
+} @else if (error()) {
+  <app-alerta tipo="error" [mensaje]="error() | translate" />
+}

@@ -1,0 +1,15 @@
+.volver { display: inline-block; margin-bottom: var(--em-space-4); font-weight: 600; }
+.cabecera { border-radius: 28px; padding: var(--em-space-5); background: linear-gradient(135deg, #EFEAFB, #FBEAF4); margin-bottom: var(--em-space-5); }
+.cabecera__panel { padding: var(--em-space-5) var(--em-space-6); display: grid; gap: var(--em-space-5); }
+.cabecera__fila { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--em-space-3); }
+.cabecera__fila p { margin: 0; }
+.cabecera__codigo { font-size: .8125rem; font-weight: 700; color: var(--em-magenta-dark); }
+.detalle { display: flex; flex-wrap: wrap; gap: var(--em-space-5); align-items: flex-start; }
+.detalle__principal { flex: 3 1 30rem; min-width: 0; display: grid; gap: var(--em-space-5); }
+.detalle__lateral { flex: 1 1 16rem; display: grid; gap: var(--em-space-4); }
+.bloque { padding: var(--em-space-5); }
+.bloque__titulo { font-size: 1.125rem; margin: 0 0 var(--em-space-3); }
+.datos { display: grid; gap: var(--em-space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); margin: 0; }
+.datos dt { font-size: .8125rem; color: var(--em-text-2); margin-bottom: var(--em-space-1); }
+.datos dd { margin: 0; display: flex; align-items: center; gap: var(--em-space-2); font-weight: 600; }
+.resumen { white-space: pre-line; margin: 0; }
