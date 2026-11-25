@@ -1,0 +1,57 @@
+<div class="horario">
+  <table class="em-horario">
+    @if (titulo()) {
+      <caption class="em-sr-only">{{ titulo() }}</caption>
+    }
+    <thead>
+      <tr>
+        <td></td>
+        @for (dia of dias; track dia) {
+          <th scope="col">
+            <abbr [title]="'DIAS.' + dia | translate">{{ 'DIAS_CORTO.' + dia | translate }}</abbr>
+            @if (lunes()) {
+              <span class="horario__fecha">{{ fecha(dia) | fecha: 'd MMM' }}</span>
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (hora of horas(); track hora) {
+        <tr>
+          <th scope="row">{{ etiquetaHora(hora) }}</th>
+          @for (dia of dias; track dia) {
+            <td [attr.data-bloque]="estado(dia, hora) || null">
+              @switch (estado(dia, hora)) {
+                @case ('libre') {
+                  @if (seleccionable()) {
+                    <button type="button" (click)="elegir.emit({ dia: dia, hora: hora })"
+                            [attr.aria-label]="('HORARIO.ELEGIR' | translate: { dia: ('DIAS.' + dia | translate), hora: etiquetaHora(hora) })"></button>
+                  } @else {
+                    <span class="em-sr-only">{{ 'HORARIO.LIBRE' | translate }}</span>
+                  }
+                }
+                @case ('elegido') {
+                  <button type="button" aria-pressed="true" (click)="elegir.emit({ dia: dia, hora: hora })"
+                          [attr.aria-label]="('HORARIO.ELEGIDO' | translate: { dia: ('DIAS.' + dia | translate), hora: etiquetaHora(hora) })"></button>
+                }
+                @case ('ocupado') {
+                  <span class="em-sr-only">{{ 'HORARIO.OCUPADO' | translate }}</span>
+                }
+              }
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<ul class="leyenda" [attr.aria-label]="'HORARIO.LEYENDA' | translate">
+  <li><span class="leyenda__muestra" data-bloque="libre"></span>{{ 'HORARIO.LIBRE' | translate }}</li>
+  @if (ocupados().length) {
+    <li><span class="leyenda__muestra" data-bloque="ocupado"></span>{{ 'HORARIO.OCUPADO' | translate }}</li>
+  }
+  @if (seleccionable()) {
+    <li><span class="leyenda__muestra" data-bloque="elegido"></span>{{ 'HORARIO.TU_ELECCION' | translate }}</li>
+  }
+</ul>

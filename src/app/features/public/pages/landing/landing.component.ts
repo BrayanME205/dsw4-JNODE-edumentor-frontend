@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { TutoresDestacadosComponent } from '../../../tutores/components/tutores-destacados/tutores-destacados.component';
 import { MateriasDestacadasComponent } from '../../../materias/components/materias-destacadas/materias-destacadas.component';
 
-/** Página de inicio pública. Incluye las materias destacadas (REQ-15); los tutores destacados llegan en REQ-16. */
+/** Página de inicio pública. Incluye las materias destacadas (REQ-15) y los tutores destacados (REQ-16). */
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RouterLink, TranslateModule, MateriasDestacadasComponent],
+  imports: [RouterLink, TranslateModule, MateriasDestacadasComponent, TutoresDestacadosComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })

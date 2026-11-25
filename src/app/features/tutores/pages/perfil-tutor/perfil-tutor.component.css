@@ -1,0 +1,8 @@
+.volver { display: inline-block; margin-bottom: var(--em-space-4); font-weight: 600; }
+.perfil { border-radius: 28px; padding: var(--em-space-5); background: linear-gradient(135deg, #EFEAFB, #FBEAF4); margin-bottom: var(--em-space-5); }
+.perfil__panel { display: flex; flex-wrap: wrap; align-items: center; gap: var(--em-space-5); padding: var(--em-space-5) var(--em-space-6); }
+.perfil__datos { flex: 1 1 16rem; }
+.perfil__rol { margin: 0; font-size: .8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--em-magenta-dark); }
+.perfil__cta { flex: 0 0 auto; }
+.bloque { padding: var(--em-space-5); margin-bottom: var(--em-space-5); }
+.bloque__titulo { font-size: 1.25rem; }

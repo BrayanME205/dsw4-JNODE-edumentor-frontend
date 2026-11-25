@@ -55,6 +55,12 @@ export const routes: Routes = [
           import('./features/materias/pages/inicio-coordinador/inicio-coordinador.component').then((m) => m.InicioCoordinadorComponent)
       },
       {
+        path: 'disponibilidad',
+        canActivate: [roleGuard('TUTOR')],
+        title: 'TITULOS.DISPONIBILIDAD',
+        loadComponent: () => import('./features/tutores/pages/mi-disponibilidad/mi-disponibilidad.component').then((m) => m.MiDisponibilidadComponent)
+      },
+      {
         path: 'materias',
         canActivate: [roleGuard('COORDINADOR')],
         title: 'TITULOS.MATERIAS_ADMIN',
@@ -77,6 +83,16 @@ export const routes: Routes = [
         path: 'materias',
         title: 'TITULOS.MATERIAS',
         loadComponent: () => import('./features/materias/pages/explorar-materias/explorar-materias.component').then((m) => m.ExplorarMateriasComponent)
+      },
+      {
+        path: 'tutores',
+        title: 'TITULOS.TUTORES',
+        loadComponent: () => import('./features/tutores/pages/explorar-tutores/explorar-tutores.component').then((m) => m.ExplorarTutoresComponent)
+      },
+      {
+        path: 'tutores/:id',
+        title: 'TITULOS.PERFIL_TUTOR',
+        loadComponent: () => import('./features/tutores/pages/perfil-tutor/perfil-tutor.component').then((m) => m.PerfilTutorComponent)
       },
       {
         path: 'sin-permiso',

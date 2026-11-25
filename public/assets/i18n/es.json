@@ -22,7 +22,10 @@
     "SIN_PERMISO": "Sin permiso",
     "NO_ENCONTRADA": "Página no encontrada",
     "MATERIAS": "Materias",
-    "MATERIAS_ADMIN": "Administrar materias"
+    "MATERIAS_ADMIN": "Administrar materias",
+    "TUTORES": "Tutores",
+    "PERFIL_TUTOR": "Perfil del tutor",
+    "DISPONIBILIDAD": "Mi disponibilidad"
   },
   "NAV": {
     "SALTAR": "Saltar al contenido",
@@ -171,5 +174,77 @@
     "ACCESO_SUPERVISION_TEXTO": "Revisá el estado de todas las sesiones.",
     "ACCESO_TUTORES": "Ver tutores",
     "ACCESO_TUTORES_TEXTO": "Consultá perfiles y calificaciones."
+  },
+  "DIAS": {
+    "MONDAY": "Lunes",
+    "TUESDAY": "Martes",
+    "WEDNESDAY": "Miércoles",
+    "THURSDAY": "Jueves",
+    "FRIDAY": "Viernes",
+    "SATURDAY": "Sábado",
+    "SUNDAY": "Domingo"
+  },
+  "DIAS_CORTO": {
+    "MONDAY": "Lun",
+    "TUESDAY": "Mar",
+    "WEDNESDAY": "Mié",
+    "THURSDAY": "Jue",
+    "FRIDAY": "Vie",
+    "SATURDAY": "Sáb",
+    "SUNDAY": "Dom"
+  },
+  "HORARIO": {
+    "LIBRE": "Disponible",
+    "OCUPADO": "Ocupado",
+    "TU_ELECCION": "Tu elección",
+    "LEYENDA": "Leyenda del horario",
+    "ELEGIR": "Elegir {{dia}} a las {{hora}}",
+    "ELEGIDO": "Elegiste {{dia}} a las {{hora}}. Tocá de nuevo para quitarlo."
+  },
+  "TUTORES": {
+    "TITULO": "Tutores",
+    "SUBTITULO": "Estudiantes avanzados que te acompañan en las materias más exigentes.",
+    "BUSCAR": "Buscar por nombre",
+    "ORDENAR": "Ordenar por",
+    "ORDEN_CALIFICACION": "Mejor calificados",
+    "ORDEN_NOMBRE": "Nombre (A-Z)",
+    "FILTRAR_DIA": "Filtrar por día",
+    "CUALQUIER_DIA": "Cualquier día",
+    "CONTEO": "{{n}} tutores",
+    "SIN_RESULTADOS": "No hay tutores con ese filtro",
+    "SIN_RESULTADOS_TEXTO": "Probá con otro día o borrá la búsqueda.",
+    "CALIFICACION": "Calificación {{valor}} de 5",
+    "EVALUACIONES_N": "{{n}} evaluaciones",
+    "SIN_EVALUACIONES": "Todavía sin evaluaciones",
+    "ATIENDE": "Días en que atiende:",
+    "SIN_HORARIO": "Este tutor todavía no publicó su horario.",
+    "DESTACADOS": "Tutores mejor calificados",
+    "VER_TODOS": "Ver todos los tutores",
+    "VOLVER": "Volver a tutores",
+    "RESERVAR_CON": "Reservar con {{nombre}}",
+    "HORARIO": "Horario semanal",
+    "HORARIO_DE": "Horario semanal de {{nombre}}",
+    "HORARIO_TEXTO": "Los bloques en lila son las horas en que podés reservar una tutoría."
+  },
+  "DISPONIBILIDAD": {
+    "TITULO": "Mi disponibilidad",
+    "SUBTITULO": "Definí los bloques semanales en que podés dar tutorías.",
+    "VISTA": "Así ven tu horario los estudiantes",
+    "VACIO": "Todavía no tenés bloques",
+    "VACIO_TEXTO": "Agregá tu primer bloque para empezar a recibir solicitudes.",
+    "NUEVO_TITULO": "Nuevo bloque",
+    "EDITAR_TITULO": "Editar bloque",
+    "DIA": "Día",
+    "DESDE": "Desde",
+    "HASTA": "Hasta",
+    "RANGO_INVALIDO": "La hora de fin tiene que ser posterior a la de inicio",
+    "AGREGAR": "Agregar bloque",
+    "MIS_BLOQUES": "Mis bloques",
+    "QUITAR": "Quitar",
+    "QUITAR_TITULO": "¿Quitar este bloque?",
+    "QUITAR_TEXTO": "Los estudiantes ya no podrán reservar en ese horario. Las tutorías ya aceptadas se mantienen.",
+    "AGREGADO": "Bloque agregado",
+    "ACTUALIZADO": "Bloque actualizado",
+    "QUITADO": "Bloque quitado"
   }
 }

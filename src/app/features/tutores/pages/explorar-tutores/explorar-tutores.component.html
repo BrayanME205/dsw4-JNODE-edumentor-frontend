@@ -1,0 +1,53 @@
+<section class="em-escena franja">
+  <span class="em-burbuja em-burbuja--magenta" style="width: 240px; height: 240px; right: -70px; top: -110px" aria-hidden="true"></span>
+  <span class="em-burbuja em-burbuja--violeta" style="width: 160px; height: 160px; left: -60px; bottom: -90px" aria-hidden="true"></span>
+  <div class="em-container">
+    <div class="em-glass franja__panel">
+      <h1 class="em-titulo-seccion franja__titulo">{{ 'TUTORES.TITULO' | translate }}</h1>
+      <p class="em-muted">{{ 'TUTORES.SUBTITULO' | translate }}</p>
+      <div class="em-cluster" style="align-items: flex-end">
+        <div class="em-field" style="flex: 1 1 18rem; max-width: 30rem">
+          <label class="em-label" for="buscar-tutor">{{ 'TUTORES.BUSCAR' | translate }}</label>
+          <input id="buscar-tutor" type="search" class="em-input" [value]="busqueda()" (input)="buscar($event)">
+        </div>
+        <div class="em-field">
+          <label class="em-label" for="orden">{{ 'TUTORES.ORDENAR' | translate }}</label>
+          <select id="orden" class="em-select" [value]="orden()" (change)="ordenar($event)">
+            <option value="calificacion">{{ 'TUTORES.ORDEN_CALIFICACION' | translate }}</option>
+            <option value="nombre">{{ 'TUTORES.ORDEN_NOMBRE' | translate }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="em-container contenido">
+  @if (cargando()) {
+    <app-cargando [filas]="3" />
+  } @else if (error()) {
+    <app-alerta tipo="error" [mensaje]="error() | translate">
+      <button type="button" class="em-btn em-btn--secondary em-btn--sm" style="margin-left: var(--em-space-3)" (click)="cargar()">{{ 'COMUN.REINTENTAR' | translate }}</button>
+    </app-alerta>
+  } @else {
+    <div class="filtros">
+      <div class="em-cluster" role="group" [attr.aria-label]="'TUTORES.FILTRAR_DIA' | translate">
+        <button type="button" class="em-chip" [attr.aria-pressed]="dia() === null" (click)="dia.set(null)">{{ 'TUTORES.CUALQUIER_DIA' | translate }}</button>
+        @for (d of dias; track d) {
+          <button type="button" class="em-chip" [attr.aria-pressed]="dia() === d" (click)="dia.set(d)">{{ 'DIAS.' + d | translate }}</button>
+        }
+      </div>
+      <span class="em-muted" aria-live="polite">{{ 'TUTORES.CONTEO' | translate: { n: filtrados().length } }}</span>
+    </div>
+
+    @if (filtrados().length === 0) {
+      <app-estado-vacio imagen="assets/img/estudiantes.webp" [titulo]="'TUTORES.SIN_RESULTADOS' | translate" [texto]="'TUTORES.SIN_RESULTADOS_TEXTO' | translate" />
+    } @else {
+      <div class="em-grid">
+        @for (tutor of filtrados(); track tutor.id) {
+          <app-tutor-card [tutor]="tutor" [dias]="diasDe(tutor.id)" />
+        }
+      </div>
+    }
+  }
+</div>
