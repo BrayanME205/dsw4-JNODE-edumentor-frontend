@@ -34,18 +34,46 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: () => inject(AuthService).rutaInicio() },
-      // Inicio provisional de estudiante y tutor (REQ-17 lo reemplaza)
+      // ----- Estudiante -----
       {
         path: 'estudiante',
         canActivate: [roleGuard('ESTUDIANTE')],
         title: 'TITULOS.INICIO',
-        loadComponent: () => import('./features/dashboard/pages/bienvenida/bienvenida.component').then((m) => m.BienvenidaComponent)
+        loadComponent: () =>
+          import('./features/dashboard/pages/inicio-estudiante/inicio-estudiante.component').then((m) => m.InicioEstudianteComponent)
       },
+      {
+        path: 'reservar',
+        canActivate: [roleGuard('ESTUDIANTE')],
+        title: 'TITULOS.RESERVAR',
+        loadComponent: () => import('./features/tutorias/pages/reservar/reservar.component').then((m) => m.ReservarComponent)
+      },
+      // ----- Tutor -----
       {
         path: 'tutor',
         canActivate: [roleGuard('TUTOR')],
         title: 'TITULOS.INICIO',
-        loadComponent: () => import('./features/dashboard/pages/bienvenida/bienvenida.component').then((m) => m.BienvenidaComponent)
+        loadComponent: () => import('./features/dashboard/pages/inicio-tutor/inicio-tutor.component').then((m) => m.InicioTutorComponent)
+      },
+      // ----- Compartidas -----
+      {
+        path: 'tutorias',
+        canActivate: [roleGuard('ESTUDIANTE', 'TUTOR')],
+        title: 'TITULOS.TUTORIAS',
+        loadComponent: () => import('./features/tutorias/pages/mis-tutorias/mis-tutorias.component').then((m) => m.MisTutoriasComponent)
+      },
+      {
+        // Participantes y coordinador (el backend valida quién puede verla)
+        path: 'tutorias/:id',
+        title: 'TITULOS.DETALLE',
+        loadComponent: () => import('./features/tutorias/pages/detalle-sesion/detalle-sesion.component').then((m) => m.DetalleSesionComponent)
+      },
+      // ----- Coordinador -----
+      {
+        path: 'supervision',
+        canActivate: [roleGuard('COORDINADOR')],
+        title: 'TITULOS.SUPERVISION',
+        loadComponent: () => import('./features/tutorias/pages/supervision/supervision.component').then((m) => m.SupervisionComponent)
       },
       {
         path: 'coordinacion',

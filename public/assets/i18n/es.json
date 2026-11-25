@@ -25,7 +25,11 @@
     "MATERIAS_ADMIN": "Administrar materias",
     "TUTORES": "Tutores",
     "PERFIL_TUTOR": "Perfil del tutor",
-    "DISPONIBILIDAD": "Mi disponibilidad"
+    "DISPONIBILIDAD": "Mi disponibilidad",
+    "RESERVAR": "Reservar tutoría",
+    "TUTORIAS": "Mis tutorías",
+    "DETALLE": "Detalle de la tutoría",
+    "SUPERVISION": "Supervisión"
   },
   "NAV": {
     "SALTAR": "Saltar al contenido",
@@ -112,10 +116,6 @@
     "MENU_DISPONIBILIDAD": "Mi disponibilidad",
     "MENU_SUPERVISION": "Supervisión",
     "SALIR": "Salir"
-  },
-  "BIENVENIDA": {
-    "HOLA": "Hola, {{nombre}}",
-    "TEXTO": "Tu panel se completa a medida que el equipo integra cada pantalla."
   },
   "ERRORES": {
     "NO_ENCONTRADA_CODIGO": "Error 404",
@@ -246,5 +246,122 @@
     "AGREGADO": "Bloque agregado",
     "ACTUALIZADO": "Bloque actualizado",
     "QUITADO": "Bloque quitado"
+  },
+  "ESTADOS": {
+    "REQUESTED": "Solicitada",
+    "CONFIRMED": "Confirmada",
+    "IN_SESSION": "En sesión",
+    "COMPLETED": "Completada",
+    "REVIEWED": "Evaluada",
+    "REJECTED": "Rechazada",
+    "CANCELLED": "Cancelada"
+  },
+  "MODALIDAD": {
+    "VIRTUAL": "Virtual",
+    "PRESENCIAL": "Presencial"
+  },
+  "RUTA": {
+    "TITULO": "Recorrido de la tutoría"
+  },
+  "ACCIONES": {
+    "ACEPTAR": "Aceptar",
+    "RECHAZAR": "Rechazar",
+    "CANCELAR": "Cancelar tutoría",
+    "INICIAR": "Iniciar sesión",
+    "FINALIZAR": "Finalizar",
+    "EVALUAR": "Evaluar",
+    "RECHAZAR_TITULO": "¿Rechazar esta solicitud?",
+    "RECHAZAR_TEXTO": "El estudiante verá la solicitud como rechazada y podrá buscar otro horario.",
+    "CANCELAR_TITULO": "¿Cancelar esta tutoría?",
+    "CANCELAR_TEXTO": "Solo se puede cancelar con al menos 2 horas de anticipación. Esta acción no se puede deshacer.",
+    "CANCELAR_CONFIRMAR": "Sí, cancelar",
+    "HECHO_ACEPTAR": "Tutoría confirmada",
+    "HECHO_RECHAZAR": "Solicitud rechazada",
+    "HECHO_CANCELAR": "Tutoría cancelada",
+    "HECHO_INICIAR": "¡La sesión empezó!",
+    "HECHO_FINALIZAR": "Sesión finalizada"
+  },
+  "TUTORIAS": {
+    "TITULO": "Mis tutorías",
+    "SUBTITULO_ESTUDIANTE": "Seguí el estado de tus solicitudes y sesiones.",
+    "SUBTITULO_TUTOR": "Respondé solicitudes y llevá el control de tus sesiones.",
+    "NUEVA": "Reservar tutoría",
+    "FILTRAR": "Filtrar tutorías",
+    "FILTRO_PENDIENTES": "Por responder",
+    "FILTRO_PROXIMAS": "Próximas",
+    "FILTRO_HISTORIAL": "Historial",
+    "VACIO_PENDIENTES": "No tenés solicitudes por responder",
+    "VACIO_PROXIMAS": "No tenés tutorías próximas",
+    "VACIO_HISTORIAL": "Todavía no hay historial",
+    "VACIO_TEXTO_ESTUDIANTE": "Elegí una materia y un tutor para reservar tu primera tutoría.",
+    "VACIO_TEXTO_TUTOR": "Cuando un estudiante reserve en tu horario, la solicitud aparece acá.",
+    "CON_TUTOR": "Tutor:",
+    "CON_ESTUDIANTE": "Estudiante:"
+  },
+  "RESERVAR": {
+    "TITULO": "Reservar tutoría",
+    "SUBTITULO": "En tres pasos: qué necesitás, con quién y cuándo.",
+    "PASO_1": "Materia y tutor",
+    "PASO_2": "Elegí un horario",
+    "PASO_3": "Tu solicitud",
+    "MATERIA": "Materia",
+    "TUTOR": "Tutor",
+    "ELEGI_MATERIA": "Elegí una materia",
+    "ELEGI_TUTOR": "Elegí un tutor",
+    "PRIMERO_TUTOR": "Elegí un tutor para ver su horario.",
+    "ANTERIOR": "Semana anterior",
+    "SIGUIENTE": "Semana siguiente",
+    "SEMANA_DEL": "Semana del {{fecha}}",
+    "ELEGI_HORA": "Elegí una hora disponible en el horario.",
+    "CUANDO": "Cuándo",
+    "DURACION": "Duración",
+    "MODALIDAD": "Modalidad",
+    "NO_CABE": "Esa duración se sale del bloque del tutor. Elegí menos tiempo u otra hora.",
+    "ENVIAR": "Enviar solicitud",
+    "NOTA": "El tutor tiene que aceptarla. Te avisamos en Mis tutorías.",
+    "ENVIADA": "¡Solicitud enviada! Ahora el tutor la tiene que aceptar."
+  },
+  "DETALLE": {
+    "VOLVER": "Volver",
+    "DATOS": "Datos de la tutoría",
+    "ESTUDIANTE": "Estudiante",
+    "TUTOR": "Tutor",
+    "RESUMEN": "Resumen del trabajo realizado",
+    "FINALIZAR_TITULO": "Finalizar la sesión",
+    "FINALIZAR_TEXTO": "Contá brevemente qué trabajaron. El estudiante lo verá en su historial.",
+    "ACCIONES": "¿Qué sigue?",
+    "FUERA_DE_PLAZO": "Faltan menos de 2 horas: ya no se puede cancelar.",
+    "AYUDA_REQUESTED": "La solicitud espera la respuesta del tutor.",
+    "AYUDA_CONFIRMED": "La tutoría está confirmada. El tutor la inicia a la hora pactada.",
+    "AYUDA_IN_SESSION": "La sesión está en curso. Al terminar, el tutor registra el resumen.",
+    "AYUDA_COMPLETED": "La sesión terminó. El estudiante puede evaluarla.",
+    "AYUDA_REVIEWED": "La tutoría fue evaluada. ¡Recorrido completo!",
+    "AYUDA_REJECTED": "La solicitud fue rechazada. Podés reservar otro horario.",
+    "AYUDA_CANCELLED": "La tutoría fue cancelada."
+  },
+  "SUPERVISION": {
+    "TITULO": "Supervisión de tutorías",
+    "SUBTITULO": "Todas las sesiones del programa. Tocá un estado para filtrar.",
+    "FILTRAR": "Filtrar por estado",
+    "BUSCAR": "Buscar por estudiante, tutor o materia",
+    "CONTEO": "{{n}} tutorías",
+    "SIN_RESULTADOS": "No hay tutorías con ese filtro.",
+    "FECHA": "Fecha",
+    "ESTADO": "Estado",
+    "VER": "Ver detalle"
+  },
+  "INICIO": {
+    "HOLA": "Hola, {{nombre}}",
+    "ESTUDIANTE_TEXTO": "Llevás {{n}} tutorías completadas. ¿Qué querés repasar hoy?",
+    "TUTOR_TEXTO": "Tenés {{n}} solicitudes por responder.",
+    "VER_TUTORES": "Ver tutores",
+    "POR_EVALUAR": "Tenés {{n}} tutorías por evaluar.",
+    "PROXIMAS": "Próximas tutorías",
+    "VER_TODAS": "Ver todas",
+    "SIN_PROXIMAS": "No tenés tutorías próximas",
+    "SIN_PROXIMAS_TEXTO": "Explorá las materias y reservá con un tutor.",
+    "SOLICITUDES": "Solicitudes por responder ({{n}})",
+    "SIN_SOLICITUDES": "No hay solicitudes nuevas. ¡Todo al día!",
+    "SIN_PROXIMAS_TUTOR": "No tenés sesiones confirmadas próximamente."
   }
 }
