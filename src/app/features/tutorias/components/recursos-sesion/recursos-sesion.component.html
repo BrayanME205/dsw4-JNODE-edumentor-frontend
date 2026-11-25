@@ -1,0 +1,58 @@
+<section class="em-card bloque" aria-labelledby="recursos-titulo">
+  <div class="cabecera">
+    <h2 id="recursos-titulo" class="bloque__titulo">{{ 'RECURSOS.TITULO' | translate }}</h2>
+    @if (puedeAgregar() && !abierto()) {
+      <button type="button" class="em-btn em-btn--secondary em-btn--sm" (click)="abierto.set(true)">{{ 'RECURSOS.AGREGAR' | translate }}</button>
+    }
+  </div>
+
+  @if (error()) {
+    <app-alerta tipo="error" [mensaje]="error() | translate" />
+  } @else if (recursos().length === 0) {
+    <p class="em-muted">{{ (puedeAgregar() ? 'RECURSOS.VACIO' : 'RECURSOS.AUN_NO') | translate }}</p>
+  } @else {
+    <ul class="lista">
+      @for (r of recursos(); track r.id) {
+        <li class="recurso">
+          <span class="recurso__icono" aria-hidden="true">↗</span>
+          <a [href]="r.urlRecurso" target="_blank" rel="noopener noreferrer" class="recurso__enlace">
+            {{ r.titulo }}<span class="em-sr-only"> {{ 'RECURSOS.NUEVA_PESTANA' | translate }}</span>
+          </a>
+          @if (r.tipoArchivo) {
+            <span class="recurso__tipo">{{ etiquetaTipo(r.tipoArchivo) }}</span>
+          }
+        </li>
+      }
+    </ul>
+  }
+
+  @if (abierto()) {
+    <form [formGroup]="form" (ngSubmit)="agregar()" novalidate class="em-stack formulario">
+      @if (errorForm()) {
+        <app-alerta tipo="error" [mensaje]="errorForm() | translate" />
+      }
+      <div class="em-field">
+        <label class="em-label" for="recurso-titulo">{{ 'RECURSOS.TITULO_CAMPO' | translate }}</label>
+        <input id="recurso-titulo" class="em-input" formControlName="titulo" maxlength="150" [attr.aria-invalid]="invalido('titulo')" aria-describedby="titulo-error">
+        <span id="titulo-error" aria-live="polite">@if (invalido('titulo')) {<span class="em-error">{{ 'COMUN.OBLIGATORIO' | translate }}</span>}</span>
+      </div>
+      <div class="em-field">
+        <label class="em-label" for="recurso-url">{{ 'RECURSOS.URL' | translate }}</label>
+        <input id="recurso-url" type="url" class="em-input" formControlName="urlRecurso" placeholder="https://" [attr.aria-invalid]="invalido('urlRecurso')" aria-describedby="url-error">
+        <span id="url-error" aria-live="polite">@if (invalido('urlRecurso')) {<span class="em-error">{{ 'RECURSOS.URL_INVALIDA' | translate }}</span>}</span>
+      </div>
+      <div class="em-field">
+        <label class="em-label" for="recurso-tipo">{{ 'RECURSOS.TIPO' | translate }}</label>
+        <select id="recurso-tipo" class="em-select" formControlName="tipoArchivo">
+          @for (t of tipos; track t) {
+            <option [value]="t">{{ 'RECURSOS.TIPO_' + t | translate }}</option>
+          }
+        </select>
+      </div>
+      <div class="em-cluster">
+        <button type="submit" class="em-btn em-btn--primary" [disabled]="guardando()" [attr.aria-busy]="guardando()">{{ 'RECURSOS.GUARDAR' | translate }}</button>
+        <button type="button" class="em-btn em-btn--ghost" (click)="abierto.set(false)">{{ 'COMUN.CANCELAR' | translate }}</button>
+      </div>
+    </form>
+  }
+</section>

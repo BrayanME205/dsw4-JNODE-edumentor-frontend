@@ -14,6 +14,8 @@ import { AvatarComponent } from '../../../../shared/components/avatar/avatar.com
 import { CargandoComponent } from '../../../../shared/components/cargando/cargando.component';
 import { EstadoBadgeComponent } from '../../../../shared/components/estado-badge/estado-badge.component';
 import { FechaPipe } from '../../../../shared/pipes/fecha.pipe';
+import { EvaluacionSesionComponent } from '../../components/evaluacion-sesion/evaluacion-sesion.component';
+import { RecursosSesionComponent } from '../../components/recursos-sesion/recursos-sesion.component';
 import { AccionesSesionComponent } from '../../components/acciones-sesion/acciones-sesion.component';
 import { RutaEstadoComponent } from '../../components/ruta-estado/ruta-estado.component';
 
@@ -21,7 +23,7 @@ import { RutaEstadoComponent } from '../../components/ruta-estado/ruta-estado.co
 @Component({
   selector: 'app-detalle-sesion',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, TranslateModule, AlertaComponent, AvatarComponent, CargandoComponent, EstadoBadgeComponent, FechaPipe, AccionesSesionComponent, RutaEstadoComponent],
+  imports: [ReactiveFormsModule, RouterLink, TranslateModule, AlertaComponent, AvatarComponent, CargandoComponent, EstadoBadgeComponent, FechaPipe, AccionesSesionComponent, RutaEstadoComponent, EvaluacionSesionComponent, RecursosSesionComponent],
   templateUrl: './detalle-sesion.component.html',
   styleUrl: './detalle-sesion.component.css'
 })
