@@ -1,0 +1,37 @@
+<app-encabezado-pagina [titulo]="'TUTORIAS.TITULO' | translate" [subtitulo]="(esTutor ? 'TUTORIAS.SUBTITULO_TUTOR' : 'TUTORIAS.SUBTITULO_ESTUDIANTE') | translate">
+  @if (!esTutor) {
+    <a routerLink="/app/reservar" class="em-btn em-btn--primary em-btn--sm">{{ 'TUTORIAS.NUEVA' | translate }}</a>
+  }
+</app-encabezado-pagina>
+
+@if (cargando()) {
+  <app-cargando [filas]="4" />
+} @else if (error()) {
+  <app-alerta tipo="error" [mensaje]="error() | translate">
+    <button type="button" class="em-btn em-btn--secondary em-btn--sm" style="margin-left: var(--em-space-3)" (click)="cargar()">{{ 'COMUN.REINTENTAR' | translate }}</button>
+  </app-alerta>
+} @else {
+  <div class="em-cluster" role="group" [attr.aria-label]="'TUTORIAS.FILTRAR' | translate" style="margin-bottom: var(--em-space-5)">
+    @for (f of filtros; track f) {
+      <button type="button" class="em-chip" [attr.aria-pressed]="filtro() === f" (click)="filtro.set(f)">
+        {{ 'TUTORIAS.FILTRO_' + f.toUpperCase() | translate }} ({{ grupos()[f].length }})
+      </button>
+    }
+  </div>
+
+  @if (visibles().length === 0) {
+    <app-estado-vacio imagen="assets/img/calendario.webp"
+                      [titulo]="'TUTORIAS.VACIO_' + filtro().toUpperCase() | translate"
+                      [texto]="(esTutor ? 'TUTORIAS.VACIO_TEXTO_TUTOR' : 'TUTORIAS.VACIO_TEXTO_ESTUDIANTE') | translate">
+      @if (!esTutor) {
+        <a routerLink="/app/reservar" class="em-btn em-btn--primary">{{ 'TUTORIAS.NUEVA' | translate }}</a>
+      }
+    </app-estado-vacio>
+  } @else {
+    <div class="em-stack" aria-live="polite">
+      @for (sesion of visibles(); track sesion.id) {
+        <app-sesion-item [sesion]="sesion" (cambio)="cargar()" />
+      }
+    </div>
+  }
+}
