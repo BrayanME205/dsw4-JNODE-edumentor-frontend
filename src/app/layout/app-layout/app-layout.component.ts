@@ -7,6 +7,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { AvatarComponent } from '../../shared/components/avatar/avatar.component';
 import { IconoComponent } from '../../shared/components/icono/icono.component';
 import { LogoComponent } from '../../shared/components/logo/logo.component';
+import { SelectorIdiomaComponent } from '../../shared/components/selector-idioma/selector-idioma.component';
 
 interface ItemMenu {
   clave: string;
@@ -43,7 +44,7 @@ const MENU: Record<Rol, ItemMenu[]> = {
 @Component({
   selector: 'app-app-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, TranslateModule, LogoComponent, AvatarComponent, IconoComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, TranslateModule, LogoComponent, AvatarComponent, IconoComponent, SelectorIdiomaComponent],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.css'
 })
