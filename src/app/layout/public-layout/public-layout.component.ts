@@ -4,12 +4,13 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AuthService } from '../../core/services/auth.service';
 import { LogoComponent } from '../../shared/components/logo/logo.component';
+import { SelectorIdiomaComponent } from '../../shared/components/selector-idioma/selector-idioma.component';
 
 /** Estructura de las páginas públicas: encabezado de vidrio fijo + contenido. */
 @Component({
   selector: 'app-public-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, TranslateModule, LogoComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, TranslateModule, LogoComponent, SelectorIdiomaComponent],
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.css'
 })

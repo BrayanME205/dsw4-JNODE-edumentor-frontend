@@ -10,13 +10,14 @@ import { AvisoService } from '../../../../core/services/aviso.service';
 import { mensajeDeError } from '../../../../core/utils/errores';
 import { AlertaComponent } from '../../../../shared/components/alerta/alerta.component';
 import { MarcoAuthComponent } from '../../components/marco-auth/marco-auth.component';
+import { SelectorIdiomaComponent } from '../../../../shared/components/selector-idioma/selector-idioma.component';
 
 type Campo = 'nombre' | 'apellido' | 'carne' | 'email' | 'password';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, TranslateModule, MarcoAuthComponent, AlertaComponent],
+  imports: [ReactiveFormsModule, RouterLink, TranslateModule, MarcoAuthComponent, AlertaComponent, SelectorIdiomaComponent],
   templateUrl: './registro.component.html',
   styles: `
     .roles { display: flex; flex-wrap: wrap; gap: var(--em-space-3); border: 0; margin: 0; padding: 0; }

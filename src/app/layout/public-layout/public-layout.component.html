@@ -17,7 +17,7 @@
         <a routerLink="/" fragment="como" (click)="cerrarMenu()">{{ 'NAV.COMO_FUNCIONA' | translate }}</a>
       </nav>
       <div class="encabezado__acciones">
-        <!-- REQ-19: aquí va el selector de idioma -->
+        <app-selector-idioma />
         @if (auth.autenticado()) {
           <a [routerLink]="auth.rutaInicio()" class="em-btn em-btn--primary em-btn--sm" (click)="cerrarMenu()">{{ 'NAV.MI_PANEL' | translate }}</a>
         } @else {

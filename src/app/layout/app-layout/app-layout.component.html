@@ -23,12 +23,12 @@
   <!-- Celular: barra superior -->
   <header class="superior">
     <app-logo [destino]="inicio()" />
-    <!-- REQ-19: selector de idioma -->
+    <app-selector-idioma />
     <button type="button" class="em-btn em-btn--ghost em-btn--sm superior__salir" (click)="salir()">{{ 'APP.SALIR' | translate }}</button>
   </header>
 
   <main id="contenido" class="contenido" tabindex="-1">
-    <div class="contenido__barra"><!-- REQ-19: selector de idioma --></div>
+    <div class="contenido__barra"><app-selector-idioma /></div>
     <router-outlet />
   </main>
 

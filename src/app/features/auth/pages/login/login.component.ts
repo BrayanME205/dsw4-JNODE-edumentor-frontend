@@ -7,11 +7,12 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { mensajeDeError } from '../../../../core/utils/errores';
 import { AlertaComponent } from '../../../../shared/components/alerta/alerta.component';
 import { MarcoAuthComponent } from '../../components/marco-auth/marco-auth.component';
+import { SelectorIdiomaComponent } from '../../../../shared/components/selector-idioma/selector-idioma.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, TranslateModule, MarcoAuthComponent, AlertaComponent],
+  imports: [ReactiveFormsModule, RouterLink, TranslateModule, MarcoAuthComponent, AlertaComponent, SelectorIdiomaComponent],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
